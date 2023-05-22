@@ -12,7 +12,16 @@
   border: 1px solid red;
 }
 
-.login {
+.loginPage {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+.loginPage .login {
   max-width: 30%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -42,20 +51,20 @@
   color: #68462B;
 }
 
-.login p {
+.loginPage .login p {
   background-color: transparent;
   font-size: 3em;
   padding: 20px 0 20px 0;
   font-weight: bold;
 }
 
-.login label {
+.loginPage .login label {
   font-size: 1.4em;
   padding: 10px 0 10px 0;
   background-color: transparent;
 }
 
-.login .inputsLogin {
+.loginPage .login .inputsLogin {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,7 +83,7 @@
   padding: 20px 0 20px 0;
 }
 
-.login .btnsLoginSignin {
+.loginPage .login .btnsLoginSignin {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,12 +102,12 @@
   background-color: transparent;
 }
 
-.login .btnsLoginSignin .signin {
+.loginPage .login .btnsLoginSignin .signinText {
   padding-top: 30px;
   background-color: transparent;
 }
 
-.login .btnsLoginSignin .signin a {
+.loginPage .login .btnsLoginSignin .signinText a {
   font-style: italic;
   color: #68462B;
   background-color: transparent;

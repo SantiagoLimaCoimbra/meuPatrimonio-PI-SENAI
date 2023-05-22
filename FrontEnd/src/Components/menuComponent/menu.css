@@ -11,4 +11,8 @@
 .border {
   border: 1px solid red;
 }
-/*# sourceMappingURL=dashboard.css.map */
+
+.navbar {
+  background-color: #33605A;
+}
+/*# sourceMappingURL=menu.css.map */
