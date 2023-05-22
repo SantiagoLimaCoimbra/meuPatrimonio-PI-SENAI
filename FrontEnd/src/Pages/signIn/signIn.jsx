@@ -9,13 +9,11 @@ import Background from '../../Components/backgroundComponent/background'
 
  function SignIn() {
 
-    const welcomeMessage = 'Gerenciador de Patrimônio';
-
     return (
         <div className="signinPage">
             <Background />
             <div className="signin">
-                <p>{welcomeMessage}</p>
+                <p>Patrimonium</p>
                 <label>
                     Para realizar o cadastro, basta preencher todos os campos
                     corretamente!           

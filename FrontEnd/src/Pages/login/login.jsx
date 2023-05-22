@@ -16,7 +16,7 @@ export default function Login() {
         <div className="loginPage">
             <Background />
             <div className="login">
-                <p>Gerenciador de Patrimônio</p>
+                <p>Patrimonium</p>
                 <label>
                     Olá, seja muito bem-vindo ao seu sistema de gerenciamento de 
                     patrimônio!            
