@@ -1,0 +1,134 @@
+@import '../../css/styles.scss';
+
+// header do cara
+.navbar {
+    background-color: $dark-green;
+    border-radius: 0px 0px 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 84px;
+
+    h2 {
+        color: $light;
+        font-weight: 200;
+        display: none;
+    }
+    
+    // nav do cara
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        width: 95%;
+        background-color: transparent;
+
+        .nav-item{
+            padding: 5px 0 5px 0;
+            border-radius: 10px;
+            margin: 0 1px 0 1px;
+    
+        }
+    
+        .nav-item:hover {        
+            a {
+                background-color: $light;
+                color: $dark-green;
+            }
+        }
+        
+        .nav-items-left, .nav-items-right {
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+        }
+    
+        a {
+            background-color: $dark-green;
+            color: $light;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .nav-close-btn img {
+            width: 30px;
+        }
+
+    }
+    
+    .nav-btn {
+        padding: 5px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        display: none;
+        align-items: center;
+    }
+    
+    .nav-open-btn img {
+        width: 30px;
+    }
+}
+
+// Móvel: 360 x 640.
+// Móvel: 375 x 667.
+// Móvel: 360 x 720.
+// iPhone X: 375 x 812.
+// Pixel 2: 411 x 731.
+// Tabuleiro: 768 x 1024.
+// Portátil: 1366 x 768.
+// Laptop ou desktop de alta resolução: 1920 x 1080.
+
+
+@media screen and (max-width: 804px){
+    .navbar{
+        justify-content: space-between;
+        padding: 25px;
+
+        h2 {
+            display: flex;
+        }
+        
+        .nav {
+            position: fixed;
+            top: -100vh;
+            left: 0;
+            height: 30%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            background-color: $dark-green;
+            transition: 1s;
+    
+            .nav-items-left, .nav-items-right {
+                padding: 10px;
+
+                .nav-item {
+                    padding: 10px 0 10px 0;
+                }
+            }
+        }
+
+
+        .nav-btn {
+            display: flex;
+            // visibility: visible;
+            // opacity: 1;
+        }
+
+        .nav-close-btn{
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+    
+        .responsive_nav{
+            transform: translateY(100vh);
+        }
+    }
+}

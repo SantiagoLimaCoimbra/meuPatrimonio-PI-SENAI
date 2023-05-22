@@ -1,6 +1,7 @@
 // Aqui ficam as estilizações globais do site - APAGAR ESSE COMENTÁRIO ANTES DO COMMIT FINAL
 
 @import '_colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,200&display=swap');
 
 * {
     box-sizing: border-box;
@@ -8,8 +9,12 @@
     padding: 0;
     border: 0;
     overflow: hidden;
-    
+  }
+  
+body {
   background-color: #F9F4E3;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .border{
