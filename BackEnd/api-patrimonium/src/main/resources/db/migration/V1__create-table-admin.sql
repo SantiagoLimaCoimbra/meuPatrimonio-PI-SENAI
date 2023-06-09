@@ -3,7 +3,7 @@ create table Admin (
     name varchar(60) not null,
     email varchar(120) not null unique,
     cpf varchar(11) not null,
-    password varchar(120) not null,
+    password varchar(255) not null,
 
     primary key(id)
 );
