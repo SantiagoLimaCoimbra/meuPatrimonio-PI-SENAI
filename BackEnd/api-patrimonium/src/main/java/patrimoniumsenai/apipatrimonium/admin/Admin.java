@@ -39,17 +39,17 @@ public class Admin implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
+        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override
     public String getUsername() {
         return cpf;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
