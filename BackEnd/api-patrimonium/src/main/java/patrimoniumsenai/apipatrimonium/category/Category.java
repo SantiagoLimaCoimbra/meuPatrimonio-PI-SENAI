@@ -17,8 +17,11 @@ public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_category;
     private String name;
-    private String type;
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
+
 
     public Category(CreateCategoryDTO data){
         this.name = data.name();
