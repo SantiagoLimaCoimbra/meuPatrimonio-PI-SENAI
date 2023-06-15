@@ -6,6 +6,6 @@ public record UpdateCategoryDTO(
         @NotNull
         Long id_category,
         String name,
-        String type,
+        Type type,
         String description) {
 }
