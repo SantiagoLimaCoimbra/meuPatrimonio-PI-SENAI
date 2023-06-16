@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import '../../css/styles.scss';
 import '../inputComponent/input.scss'
 import { IMaskInput } from "react-imask";
@@ -16,6 +16,7 @@ export default function(props) {
                 id={props.id}
                 name={props.name}
                 required={props.required}
+                onChange={props.onChange} 
             />
             <img src={props.img} />       
         </div>
