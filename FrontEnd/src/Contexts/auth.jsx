@@ -27,8 +27,15 @@ export const AuthProvider = ({ children }) => {
             console.log(response);
             console.log("login", response.data);
 
-            const loggedUser = response.data.user;
-            const token = response.data.token;
+            let loggedUser;
+            console.log(response.token);
+            const token = response.token;
+            // const token = response.token
+
+            if (token) {
+                loggedUser = true;
+                console.log("chegou");
+            }
 
             localStorage.setItem("user", JSON.stringify(loggedUser));
             localStorage.setItem("token", token);
@@ -37,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
             setUser(loggedUser);
             navigate("/");
+
         } catch (error) {
             console.log(error);
         }
@@ -54,7 +62,8 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!user, user, loading, login, logout }}
+            // value={{ authenticated: !!user, user, loading, login, logout }}
+            value={{ user, loading, login, logout }}
         >
             {children}
         </AuthContext.Provider>

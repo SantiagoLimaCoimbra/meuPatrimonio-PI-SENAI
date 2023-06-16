@@ -13,13 +13,15 @@ export default function Rotas() {
 
    const Private = ({ children }) => {
 
-      const { authenticated, loading } = useContext(AuthContext);
+      const { loading, user } = useContext(AuthContext);
+
+      // console.log(context);
 
       if (loading) {
          return <div className="loading">Carregando...</div>
       }
 
-      if (!authenticated){
+      if (!user){
          return <Navigate to="/login "/>;
       }
 

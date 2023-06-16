@@ -32,5 +32,5 @@ export const createSession = async (cpf, password) => {
     }
 };
 
-// estrutura do payload está  dando erro
-// o payload é o corpo da requisição (cpf e password)
+
+

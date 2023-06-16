@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
 
-    const { authenticated, login } = useContext(AuthContext);
+    const { authenticated, login, user } = useContext(AuthContext);
 
     const [cpf, setCpf] = useState("");
     const [password, setPassword] = useState("");
@@ -22,6 +22,7 @@ export default function Login() {
         e.preventDefault();
         
         console.log("Submit", { cpf, password });
+        console.log(user)
         login(cpf, password); // integração com o contexto e com a api
     };
 
@@ -34,7 +35,6 @@ export default function Login() {
                     Olá, seja muito bem-vindo ao seu sistema de gerenciamento de 
                     patrimônio!            
                 </label>
-                <label>{String(authenticated)}</label>
                     <div className="inputsLogin">
                         <Input 
                             type={"text"} 
@@ -42,6 +42,7 @@ export default function Login() {
                             img={IconUser} 
                             mask={"000.000.000-00"} 
                             value={cpf} 
+                            // value={"55555555555"}
                             onChange={(e) => setCpf(e.target.value)}
                         />
                         <Input 
