@@ -1,9 +1,11 @@
-import { React, useRef } from "react";
+import { React, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import '../../css/styles.scss';
 import './menu.scss';
 import MenuIcon from '../../Assets/icons/menu-light-icon.svg';
 import MenuClose from '../../Assets/icons/close-icon.svg';
+
+import { AuthContext } from "../../Contexts/auth";
 
 export default function () {
 
@@ -12,6 +14,12 @@ export default function () {
 	const showNavbar = () => {
         navRef.current.classList.toggle("responsive_nav");
 	};
+
+    const { logout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logout();
+    }
 
     return(
         <div className="navbar"> 
@@ -36,7 +44,7 @@ export default function () {
                         <Link to="/">Valor do Patrimônio</Link>
                     </div>
                     <div className="nav-item">
-                        <Link to="/">Sair</Link>
+                        <Link onClick={handleLogout} to="/">Sair</Link>
                     </div>
                 </div>
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
