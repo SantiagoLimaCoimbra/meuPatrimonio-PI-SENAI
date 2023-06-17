@@ -20,10 +20,12 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.log("Submit", { cpf, password });
+
+        const cpfValue = cpf.replace(/\D/g, "");
+
+        console.log("Submit", { cpfValue, password });
         console.log(user)
-        login(cpf, password); // integração com o contexto e com a api
+        login(cpfValue, password); // integração com o contexto e com a api
     };
 
     return (
