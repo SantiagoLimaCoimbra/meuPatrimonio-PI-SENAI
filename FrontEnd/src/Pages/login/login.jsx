@@ -20,10 +20,12 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const cpfValue = cpf.replace(/\D/g, "");
         
-        console.log("Submit", { cpf, password });
+        console.log("Submit", { cpfValue, password });
         console.log(user)
-        login(cpf, password); // integração com o contexto e com a api
+        login(cpfValue, password); // integração com o contexto e com a api
     };
 
     return (
@@ -42,7 +44,6 @@ export default function Login() {
                             img={IconUser} 
                             mask={"000.000.000-00"} 
                             value={cpf} 
-                            // value={"55555555555"}
                             onChange={(e) => setCpf(e.target.value)}
                         />
                         <Input 
