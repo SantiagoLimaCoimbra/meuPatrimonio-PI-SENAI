@@ -31,38 +31,37 @@ export default function Login() {
     return (
         <div className="loginPage">
             <Background />
-                <form onSubmit={handleSubmit} className="login">
+            <form onSubmit={handleSubmit} className="login">
                 <p>Patrimonium</p>
                 <label>
                     Olá, seja muito bem-vindo ao seu sistema de gerenciamento de 
                     patrimônio!            
                 </label>
-                    <div className="inputsLogin">
-                        <Input 
-                            type={"text"} 
-                            placeholder={"Cpf"} 
-                            img={IconUser} 
-                            mask={"000.000.000-00"} 
-                            value={cpf} 
-                            // value={"55555555555"}
-                            onChange={(e) => setCpf(e.target.value)}
-                        />
-                        <Input 
-                            type={"password"} 
-                            placeholder={"Senha"} 
-                            img={IconPassword} 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="btnsLoginSignin">
-                        <Btn type={"submit"} btnMessage={"Entrar"}/>
-                        <label className="signinText">
-                            Primeiro acesso? <Link to="/signin">Cadastre-se</Link>
-                        </label>
-                    </div>
-                </form>
+                <div className="inputsLogin">
+                    <Input 
+                        type={"text"} 
+                        placeholder={"Cpf"} 
+                        img={IconUser} 
+                        mask={"000.000.000-00"} 
+                        value={cpf} 
+                        onChange={(e) => setCpf(e.target.value)}
+                    />
+                    <Input 
+                        type={"password"} 
+                        placeholder={"Senha"} 
+                        img={IconPassword} 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className="btnsLoginSignin">
+                    <Btn type={"submit"} btnMessage={"Entrar"}/>
+                    <label className="signinText">
+                        Primeiro acesso? <Link to="/signin">Cadastre-se</Link>
+                    </label>
+                </div>
+            </form>
         </div>
 
     );
-}
+}`
