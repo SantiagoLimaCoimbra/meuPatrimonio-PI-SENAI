@@ -1,12 +1,19 @@
 import {React} from "react";
-import '../../css/App.css';
-import '../../css/styles.scss';
+import '../../../css/App.css';
+import '../../../css/styles.scss';
 import './viewCategories.scss';
 
-export default function viewCategories() {
+import Menu from '../../../Components/menuComponent/menu';
+
+
+export default function ViewCategories() {
     return (
-    
-    <p>OI</p>
-    
-    )
+        <div className="viewCategoriesPage">
+            <Menu />
+            <div className="viewCategories">
+                <h1>AAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+            </div>
+        </div>
+
+    );
 }

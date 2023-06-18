@@ -8,6 +8,7 @@ import Dashboard from "./Pages/dashboard/dashboard";
 import { AuthProvider, AuthContext } from "./Contexts/auth";
 
 import ViewItems from "./Pages/item/viewItems/viewItems";
+import ViewCategories from "./Pages/category/viewCategories/viewCategories";
 
 export default function Rotas() {
 
@@ -36,8 +37,9 @@ export default function Rotas() {
             <Routes>
                <Route element={ <Login/> }  path="/login" exact />
                <Route element={ <SignIn/> }  path="/signin" />
-               <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
+               <Route element={ <Private> <ViewItems/> </Private> }  path="/viewItems" />
                <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
+               <Route element={<Private> <ViewCategories/> </Private>} path="/viewCategories" />
             </Routes>
          </AuthProvider>
        </Router>

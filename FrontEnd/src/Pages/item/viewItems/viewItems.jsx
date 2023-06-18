@@ -6,7 +6,7 @@ import './viewItems.scss';
 import Menu from '../../../Components/menuComponent/menu';
 // import { Link } from "react-router-dom";
 
-export default function viewItems() {
+export default function ViewItems() {
 
     return (
         <div className="viewItemsPage">
