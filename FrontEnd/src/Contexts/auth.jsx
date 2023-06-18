@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession } from '../Services/api';
+import { api, createSession, createUser } from '../Services/api';
 
 export const AuthContext = createContext();
 
@@ -60,10 +60,23 @@ export const AuthProvider = ({ children }) => {
         navigate("/login");
     }
 
+    
+    const signIn = async (name, email, cpf, password) => {
+        try {
+        await createUser(name, email, cpf, password);
+        await createSession(cpf, password);
+        navigate("/login");
+    
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    };
+
     return (
         <AuthContext.Provider
             // value={{ authenticated: !!user, user, loading, login, logout }}
-            value={{ user, loading, login, logout }}
+            value={{ user, loading, login, logout, signIn }}
         >
             {children}
         </AuthContext.Provider>
