@@ -1,1 +1,75 @@
 @import '../../css/styles.scss';
+
+
+.DashboardPage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+
+
+    .dashboard {
+        max-width: 30%;
+        height: fit-content;
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 45px;
+        border-radius: 30px;
+        background-color: #f9f4e33d;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        color: $dark-brown;
+    
+    
+        p {
+            background-color: transparent;
+            font-size: 3em;
+            padding: 20px 0 20px 0;
+            font-weight: bold
+        }
+    
+        label {
+            font-size: 1.4em;
+            padding: 10px 0 10px 0;
+            background-color: transparent;
+        }
+    
+        .inputsLogin{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: transparent;
+            width: 80%;
+            padding: 20px 0 20px 0;
+        }
+    
+        .btnsLoginSignin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0 0 10px 0;
+            background-color: transparent;
+    
+            .signinText{
+                padding-top: 30px;
+                background-color: transparent;
+    
+                a {
+                    font-style: italic;
+                    font-weight: 600;
+                    color: $dark-brown;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
+

@@ -22,7 +22,7 @@ export default function Login() {
         e.preventDefault();
 
         const cpfValue = cpf.replace(/\D/g, "");
-        
+
         console.log("Submit", { cpfValue, password });
         console.log(user)
         login(cpfValue, password); // integração com o contexto e com a api

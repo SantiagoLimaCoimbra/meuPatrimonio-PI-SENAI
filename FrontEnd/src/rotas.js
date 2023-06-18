@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-d
 
 import SignIn from "./Pages/signIn/signIn";
 import Login from "./Pages/login/login";
+import Dashboard from "./Pages/dashboard/dashboard";
 
 import { AuthProvider, AuthContext } from "./Contexts/auth";
 
@@ -36,6 +37,7 @@ export default function Rotas() {
                <Route element={ <Login/> }  path="/login" exact />
                <Route element={ <SignIn/> }  path="/signin" />
                <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
+               <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
             </Routes>
          </AuthProvider>
        </Router>
