@@ -24,6 +24,7 @@ public class TokenService {
              return JWT.create()
                     .withIssuer("API Patrimonium")
                      .withSubject(admin.getCpf())
+                     .withClaim("password", admin.getPassword())
                      .withExpiresAt(expirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
