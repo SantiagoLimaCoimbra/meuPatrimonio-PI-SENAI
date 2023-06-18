@@ -33,4 +33,23 @@ export const createSession = async (cpf, password) => {
 };
 
 
+// export const createAdmin = async (name, email, cpf, password) => {
+//     try {
+//         const response = await api.post('/admins', { name, email, cpf, password });
+//         return response.data;
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error('Erro ao criar a novo usuário');
+//     }
+// }
 
+export const createAdmin = async (name, email, cpf, password) => {
+    try {
+      const response = await api.post('/admins', { name, email, cpf, password });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw new Error('Erro ao criar o novo usuário');
+    }
+  };
+  

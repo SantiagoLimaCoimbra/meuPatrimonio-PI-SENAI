@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession } from '../Services/api';
+import { api, createSession, createAdmin } from '../Services/api';
 
 export const AuthContext = createContext();
 
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider
             // value={{ authenticated: !!user, user, loading, login, logout }}
-            value={{ user, loading, login, logout }}
+            value={{ user, loading, login, logout, signIn }}
         >
             {children}
         </AuthContext.Provider>
