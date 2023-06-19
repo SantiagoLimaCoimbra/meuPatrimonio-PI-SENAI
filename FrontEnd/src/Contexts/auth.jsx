@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, createUser } from '../Services/api';
+import { api, createSession, createUser, deleteCategory } from '../Services/api';
 
 export const AuthContext = createContext();
 
@@ -73,12 +73,20 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const handleDelete = async (id_category) => {
+        try {
+            await deleteCategory(id_category);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <AuthContext.Provider
-            // value={{ authenticated: !!user, user, loading, login, logout }}
-            value={{ user, loading, login, logout, signIn }}
+            value={{ user, loading, login, logout, signIn, handleDelete }}
         >
             {children}
         </AuthContext.Provider>
     )
+
 }
