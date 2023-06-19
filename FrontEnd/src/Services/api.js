@@ -43,3 +43,13 @@ export const createUser = async (name, email, cpf, password) => {
     }
 };
   
+export const createCategory = async (name, type, description) => {
+    try {
+      const response = await api.post('/categories', { name, type, description });
+      return response.data;
+    } catch (error) {
+      //Fazer um modal de erro
+      console.log(error.response.data); // Imprime a resposta de erro do servidor
+      throw new Error('Erro ao criar categoria');
+    }
+}

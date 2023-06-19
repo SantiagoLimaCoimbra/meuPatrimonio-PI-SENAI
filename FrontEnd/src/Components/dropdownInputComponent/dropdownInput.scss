@@ -1,0 +1,36 @@
+@import '../../css/styles.scss';
+
+.inputDiv {
+    width: 80%;
+    background-color: transparent;
+    border: 1.5px solid $dark-brown;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px;
+    margin-bottom: 15px;
+
+    .input{
+        width: 90%;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: transparent;
+        outline: 0;
+        font-size: 1.3em;
+        color: $dark-brown;
+
+        
+    }
+    
+    ::placeholder {
+        color: $dark-brown;
+        opacity: .7;
+    }
+
+    img {
+        width: 18px;
+        max-width: 6%;
+        background-color: transparent;
+    }
+}
