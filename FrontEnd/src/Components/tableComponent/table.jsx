@@ -5,7 +5,7 @@ import { Pagination } from '@mui/lab';
 import DeleteIcon from "../../Assets/icons/delete-icon.svg";
 import EditIcon from "../../Assets/icons/edit-icon.svg";
 
-export default function TableComponent({ data, onPageChange, handleEdit, handleOpenDialog, id_category }) {
+export default function TableComponent({ data, onPageChange, handleEdit, handleOpenDialog, idPropertyName, cellTitles  }) {
   const [page, setPage] = useState(1);
   const rowsPerPage = 6;
   const pageCount = Math.ceil(data.length / rowsPerPage);
@@ -15,36 +15,39 @@ export default function TableComponent({ data, onPageChange, handleEdit, handleO
     onPageChange(value);
   };
 
-  const handleDeleteItem = (id_category) => {
-    handleOpenDialog(id_category);
+  const handleDeleteItem = (id) => {
+    handleOpenDialog(id);
   };
 
   return (
     <TableContainer component={Paper} className="container-table">
       <Table className="table">
         <TableHead className="table-head">
-          <TableRow className="table-row">
-            <TableCell>Nome da categoria</TableCell>
-            <TableCell>Descrição</TableCell>
-            <TableCell>Tipo</TableCell>
+        <TableRow className="table-row">
+            {cellTitles.map((cellTitle) => (
+              <TableCell key={cellTitle.key}>{cellTitle.label}</TableCell>
+            ))}
             <TableCell className="table-btn-cell">Ações</TableCell>
           </TableRow>
+
         </TableHead>
         <TableBody>
           {data.slice((page - 1) * rowsPerPage, page * rowsPerPage).map((row) => (
-            <TableRow key={row.id_category}>
-              <TableCell className="table-cell">{row.name}</TableCell>
-              <TableCell className="table-cell">{row.description}</TableCell>
-              <TableCell className="table-cell type">{row.type}</TableCell>
-              <TableCell className="table-btn-cell">
-                <Button onClick={() => handleEdit(row.id_category)}>
-                  <img src={EditIcon} alt="Edit" />
-                </Button>
-                <Button onClick={() => handleDeleteItem(row.id_category)}>
-                  <img src={DeleteIcon} alt="Delete" />
-                </Button>
-              </TableCell>
-            </TableRow>
+          <TableRow key={row[idPropertyName]}>
+          {cellTitles.map((cellTitle) => (
+            <TableCell key={cellTitle.key} className="table-cell">
+              {row[cellTitle.key]}
+            </TableCell>
+          ))}
+          <TableCell className="table-btn-cell">
+            <Button onClick={() => handleEdit(row[idPropertyName])}>
+              <img src={EditIcon} alt="Edit" />
+            </Button>
+            <Button onClick={() => handleDeleteItem(row[idPropertyName])}>
+              <img src={DeleteIcon} alt="Delete" />
+            </Button>
+          </TableCell>
+        </TableRow>
           ))}
         </TableBody>
       </Table>
