@@ -2,17 +2,17 @@ import React from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import "./dialog.scss";
 
-export default function CustomDialog({ open, handleClose, handleDelete, id_category }) {
+export default function CustomDialog({ open, handleClose, handleDelete, idPropertyName, dialogTitle, dialogMsg }) {
 
     const handleConfirmDelete = () => {
-        handleDelete(id_category);
+        handleDelete(idPropertyName);
     };
 
     return (
         <Dialog open={open} onClose={handleClose} className="dialog-container">
-            <DialogTitle className="dialog-title">ATENÇÃO!</DialogTitle>
+            <DialogTitle className="dialog-title">{dialogTitle}!</DialogTitle>
             <DialogContent className="dialog-body">
-                <p>Você confirma a exclusão deste item?</p>
+                <p>{dialogMsg}</p>
             </DialogContent>
             <DialogActions className="dialog-options">
                 <Button onClick={handleConfirmDelete} className="btn-delete">

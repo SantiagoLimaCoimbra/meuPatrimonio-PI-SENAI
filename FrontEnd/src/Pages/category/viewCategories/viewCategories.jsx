@@ -50,6 +50,13 @@ export default function ViewCategories() {
     }
   };
 
+  const cellTitles = [
+    { key: "name", label: "Nome da categoria" },
+    { key: "description", label: "Descrição" },
+    { key: "type", label: "Tipo" }
+  ];
+
+
   return (
     <div className="viewCategoriesPage">
       <Menu />
@@ -68,13 +75,17 @@ export default function ViewCategories() {
           onPageChange={handlePageChange}
           handleEdit={handleEdit}
           handleOpenDialog={handleOpenDialog}
+          idPropertyName="id_category"
+          cellTitles={cellTitles}
         />
         {openDialog && (
           <Dialog
             open={openDialog}
+            dialogTitle={"ATENÇÃO!"}
+            dialogMsg={"Você confirma a exclusão deste item?"}
             handleClose={handleCloseDialog}
             handleDelete={handleDelete}
-            id_category={selectedItemId}
+            idPropertyName={selectedItemId}
           />
         )}
       </div>
