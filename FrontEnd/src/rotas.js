@@ -37,7 +37,7 @@ export default function Rotas() {
             <Routes>
                <Route element={ <Login/> }  path="/login" exact />
                <Route element={ <SignIn/> }  path="/signin" />
-               <Route element={ <Private> <ViewItems/> </Private> }  path="/viewItems" />
+               <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
                <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
                <Route element={<Private> <ViewCategories/> </Private>} path="/viewCategories" />
             </Routes>

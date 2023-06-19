@@ -1,0 +1,57 @@
+@import '../../css/styles.scss';
+
+.container-table {
+    background-color: transparent !important;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 0px !important;
+    
+    .table {
+        width: 80%;
+        
+        .css-1ygcj2i-MuiTableCell-root{
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.2em;
+            color: $dark-brown !important;
+        }
+        
+        .table-head{
+            background-color: transparent !important;
+            line-height: 24px;
+        }
+
+        .table-cell {
+            color: $dark-brown !important;
+            font-size: 1.1em;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .table-btn-cell {
+            width: 12% !important;
+            text-align: center;
+        }
+
+        .type {
+            width: 20% !important;
+        }
+    }
+
+    .pagination {
+        width: 80%;
+        display: flex;
+        text-align: end;
+        justify-content: end;
+        font-size: 1.2em;
+        padding: 1.4em 0px 0px 0px;
+
+        .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root{
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 1em !important;
+        }
+    }
+
+}
