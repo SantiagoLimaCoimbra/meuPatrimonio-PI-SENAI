@@ -22,15 +22,15 @@
   padding: 15px 35px;
   border-radius: 30px;
   font-size: 1.3em;
-  border: 1.5px solid #68462B;
-  background-color: #68462B;
+  border: 1.5px solid #33605A;
+  background-color: #33605A;
   color: #F9F4E3;
   -webkit-transition: 250ms ease-in;
   transition: 250ms ease-in;
 }
 
 .btn:hover {
-  -webkit-box-shadow: 1px 5px 5px #68462B;
-          box-shadow: 1px 5px 5px #68462B;
+  -webkit-box-shadow: 1px 5px 5px #33605A;
+          box-shadow: 1px 5px 5px #33605A;
 }
 /*# sourceMappingURL=btn.css.map */

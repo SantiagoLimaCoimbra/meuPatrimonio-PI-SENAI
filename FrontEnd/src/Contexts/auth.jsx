@@ -1,7 +1,9 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, createUser, deleteCategory } from '../Services/api';
+
+import { api, createSession, createUser, deleteCategory, createCategory } from '../Services/api';
+
 
 export const AuthContext = createContext();
 
@@ -63,15 +65,25 @@ export const AuthProvider = ({ children }) => {
     
     const signIn = async (name, email, cpf, password) => {
         try {
-        await createUser(name, email, cpf, password);
-        await createSession(cpf, password);
-        navigate("/login");
+            await createUser(name, email, cpf, password);
+            await createSession(cpf, password);
+            navigate("/login");
     
         } catch (error) {
             //Fazer um modal de erro aparecer aqui
             console.log(error);
         }
     };
+
+    const newCategory = async (name, type, description) => {
+        try {
+            await createCategory(name, type, description);
+            navigate("/viewCategories");
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    }
 
     const handleDelete = async (id_category) => {
         try {
@@ -83,7 +95,8 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, loading, login, logout, signIn, handleDelete }}
+            value={{ user, loading, login, logout, signIn, handleDelete, newCategory }}
+
         >
             {children}
         </AuthContext.Provider>

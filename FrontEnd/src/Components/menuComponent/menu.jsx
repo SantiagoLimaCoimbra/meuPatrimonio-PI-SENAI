@@ -26,6 +26,9 @@ export default function () {
             <div className="nav" ref={navRef}>
                 <div className="nav-items-left">
                     <div className="nav-item">
+                        <Link to="/">Bens</Link>
+                    </div>
+                    <div className="nav-item">
                         <Link to="/viewCategories">Categorias</Link>
                     </div>
                     <div className="nav-item">
@@ -34,9 +37,7 @@ export default function () {
                     <div className="nav-item">
                         <Link to="/">Área</Link>
                     </div>
-                    <div className="nav-item">
-                        <Link to="/viewItems">Bens</Link>
-                    </div>
+                    
                 </div>
 
                 <div className="nav-items-right">
