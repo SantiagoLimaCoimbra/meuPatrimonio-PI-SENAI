@@ -8,16 +8,18 @@ import Menu from '../../../Components/menuComponent/menu';
 import Table from "../../../Components/tableComponent/table";
 import { useFetchCategories, deleteCategory  } from "../../../Services/api";
 import Dialog from "../../../Components/dialogComponent/dialog";
+import { useNavigate } from "react-router-dom";
 
 export default function ViewCategories() {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
   const categories = useFetchCategories();
+  const navigate = useNavigate();
 
 
   const handlePageChange = (value) => {
-    // Lógica para alterar a página
+    
   };
 
   const handleEdit = (id_category) => {
@@ -56,6 +58,10 @@ export default function ViewCategories() {
     { key: "type", label: "Tipo" }
   ];
 
+  const handleNewCategory = () => {
+    navigate("/newCategory");
+  };
+
 
   return (
     <div className="viewCategoriesPage">
@@ -67,7 +73,7 @@ export default function ViewCategories() {
             <label>Todas as categorias cadastradas se encontram aqui!</label>
           </div>
           <div className="btn-new">
-            <Btn btnMessage={"Novo"}/>
+            <Btn btnMessage={"Novo"} onClick={handleNewCategory}/>
           </div>
         </div>
         <Table
