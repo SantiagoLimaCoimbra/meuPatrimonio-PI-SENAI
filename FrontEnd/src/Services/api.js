@@ -39,6 +39,12 @@ export const useFetchCategories = () => {
           console.log(error);
         }
       };
+
+      fetchData();
+    }, []);
+    
+    return categories;
+    };
   
 
 export const createCategory = async (name, type, description) => {
@@ -52,11 +58,6 @@ export const createCategory = async (name, type, description) => {
     }
 }
 
-      fetchData();
-    }, []);
-  
-    return categories;
-  };
 
   export const deleteCategory = async (id_category) => {
     try {
