@@ -1,6 +1,8 @@
 package patrimoniumsenai.apipatrimonium.category;
 
 public enum Type {
-    PERMANENTE,
-    CONSUMIVEL;
+    tangiveis,
+    intangiveis,
+    moveis,
+    imoveis;
 }
