@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import { api, createSession, createUser, 
-    deleteCategory, createCategory, createEmployee, deleteEmployee } from '../Services/api';
+    deleteCategory, createCategory, editCategory, createEmployee, deleteEmployee } from '../Services/api';
 
 
 export const AuthContext = createContext();
@@ -86,6 +86,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const handleEditCategory = async (id_category, name, type, description) => {
+        try {
+            await editCategory(id_category, name, type, description);
+            navigate("/editCategory");
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    }
+
     const handleDelete = async (id_category) => {
         try {
             await deleteCategory(id_category);
@@ -114,7 +124,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, loading, login, logout, signIn, handleDelete, newCategory, newEmployee, handleDeleteEmployee }}
+            value={{ user, loading, login, logout, signIn, handleDelete, newCategory, handleEditCategory, newEmployee, handleDeleteEmployee }}
 
         >
             {children}

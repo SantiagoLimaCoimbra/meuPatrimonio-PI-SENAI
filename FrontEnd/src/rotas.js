@@ -10,6 +10,7 @@ import { AuthProvider, AuthContext } from "./Contexts/auth";
 import ViewItems from "./Pages/item/viewItems/viewItems";
 import ViewCategories from "./Pages/category/viewCategories/viewCategories";
 import NewCategory from "./Pages/category/newCategory/newCategory";
+import EditCategory from "./Pages/category/editCategory/editCategory";
 import ViewEmployees from "./Pages/employee/viewEmployees/viewEmployees";
 import NewEmployee from "./Pages/employee/newEmployee/newEmployee";
 
@@ -44,6 +45,7 @@ export default function Rotas() {
                <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
                <Route element={ <Private> <ViewCategories/> </Private>} path="/viewCategories" />
                <Route element={ <Private> <NewCategory/> </Private>} path="/newCategory"/>
+               <Route element={ <Private> <EditCategory/> </Private>} path="/editCategory"/>
                <Route element={ <Private> <ViewEmployees/> </Private>} path="/viewEmployees"/>
                <Route element={ <Private> <NewEmployee/> </Private>} path="/newEmployee"/>
             </Routes>
