@@ -21,9 +21,9 @@ export default function NewEmployee() {
     const [position, setPosition] = useState("");
 
     const options = [
-        { value: "ESTAGIARIO", label: "Estagiário" },
-        { value: "GERENTE", label: "Gerente" },
-        { value: "EFETIVO", label: "Efetivo" },
+        { value: "Gerente", label: "Gerente" },
+        { value: "Efetivo", label: "Efetivo" },
+        { value: "Estagiario", label: "Estagiário" },
       ];
 
     const handleOptionChange = (event) => {

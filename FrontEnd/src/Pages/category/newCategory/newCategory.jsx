@@ -20,9 +20,10 @@ export default function NewCategory() {
     const [description, setDescription] = useState("");
 
     const options = [
-        { value: "PERMANENTE", label: "Permanente" },
-        { value: "CONSUMIVEL", label: "Consumível" },
-        { value: "opcao3", label: "eba3" },
+        { value: "Tangivel", label: "Tangivel" },
+        { value: "Intangivel", label: "Intangivel" },
+        { value: "Movel", label: "Móvel" },
+        { value: "Imovel", label: "Imóvel"}
       ];
 
     const handleOptionChange = (event) => {

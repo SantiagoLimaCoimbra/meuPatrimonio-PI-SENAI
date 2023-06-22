@@ -7,6 +7,7 @@ import IconUser from '../../Assets/icons/user-icon.svg'
 import IconPassword from '../../Assets/icons/password-icon.svg'
 import Background from '../../Components/backgroundComponent/background'
 import { AuthContext } from "../../Contexts/auth";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
 
@@ -67,6 +68,9 @@ export default function SignIn() {
                 </div>
                 <div className="btnSignin">
                     <Btn type={"submit"} btnMessage={"Cadastrar"}/>
+                    <label className="loginText">
+                        Já possui uma conta? <Link to="/login">Entrar</Link>
+                    </label>
                 </div>
             </form>
         </div>

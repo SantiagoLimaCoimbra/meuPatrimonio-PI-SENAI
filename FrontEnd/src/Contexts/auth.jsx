@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
             let loggedUser;
             console.log(response.token);
             const token = response.token;
-            // const token = response.token
 
             if (token) {
                 loggedUser = true;

@@ -8,56 +8,80 @@
     text-align: center;
 
 
-.signin {
-    max-width: 30%;
-    height: fit-content;
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 45px;
-    border-radius: 30px;
-    background-color: #f9f4e33d;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 13.5px );
-    -webkit-backdrop-filter: blur( 13.5px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    color: $dark-brown;
-
-
-    p {
-        background-color: transparent;
-        font-size: 3em;
-        padding: 20px 0 20px 0;
-        font-weight: bold
-    }
-
-    label {
-        font-size: 1.4em;
-        padding: 10px 0 10px 0;
-        background-color: transparent;
-    }
-
-    .inputsSignin{
+    .signin {
+        width: 600px;
+        height: fit-content;
         display: flex;
-        align-items: center;
+        margin: auto;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
-        background-color: transparent;
-        width: 80%;
-        padding: 20px 0 20px 0;
-    }
+        padding: 45px;
+        border-radius: 30px;
+        background-color: #f9f4e33d;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        color: $dark-brown;
 
-    .btnSignin {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 0 0 10px 0;
-        background-color: transparent;
+
+        p {
+            background-color: transparent;
+            font-size: 3em;
+            padding: 20px 0 20px 0;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 1.4em;
+            padding: 10px 0 10px 0;
+            background-color: transparent;
+        }
+
+        .inputsSignin{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: transparent;
+            width: 400px;
+            padding: 20px 0 20px 0;
+        }
+
+        .btnSignin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0 0 10px 0;
+            background-color: transparent;
+
+            .loginText{
+                padding-top: 30px;
+                background-color: transparent;
+
+                a {
+                    font-style: italic;
+                    font-weight: 600;
+                    color: $dark-brown;
+                    background-color: transparent;
+                }
+            }
+        }
     }
 }
+
+@media screen and (max-width: 768px) {
+
+    .signinPage{
+        
+        .signin{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+        }
+    }
 
 }

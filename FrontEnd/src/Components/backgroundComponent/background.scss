@@ -6,7 +6,6 @@
     height: 100vh;
     background-color: transparent;
     position: absolute;
-    /* z-index: -1; */
 
     .top {
         display: flex;
@@ -32,3 +31,54 @@
     }
 }
   
+
+@media screen and (max-width: 1460px) {
+    .background{
+        .top {
+            
+            img{
+                height: 60%;
+            }
+        }
+
+        .bottom {
+            img{
+                height: 70%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1320px) {
+    .background{
+        .top {
+            
+            img{
+                height: 50%;
+            }
+        }
+
+        .bottom {
+            img{
+                height: 60%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    .background{
+        .top {
+            
+            img{
+                height: 40%;
+            }
+        }
+
+        .bottom {
+            img{
+                height: 50%;
+            }
+        }
+    }
+}
