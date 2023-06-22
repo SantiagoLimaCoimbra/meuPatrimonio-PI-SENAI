@@ -14,7 +14,7 @@ export default function({id, value, onChange, required, options}) {
         onChange={onChange}
         required={required}
         >
-            <option value="">Selecione uma opção</option>
+            <option value="">Opções</option>
             {options.map((option) => (
                 <option key={option.value} value={option.value}>
                 {option.label}
