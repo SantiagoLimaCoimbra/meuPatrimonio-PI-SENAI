@@ -2,7 +2,8 @@ import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-import { api, createSession, createUser, deleteCategory, createCategory } from '../Services/api';
+import { api, createSession, createUser, 
+    deleteCategory, createCategory, createEmployee, deleteEmployee } from '../Services/api';
 
 
 export const AuthContext = createContext();
@@ -93,9 +94,27 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const newEmployee = async (name_employee, cpf, email, position) => {
+        try {
+            await createEmployee(name_employee, cpf, email, position);
+            navigate("/viewEmployees");
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    }
+
+    const handleDeleteEmployee = async (id_employee) => {
+        try {
+            await deleteEmployee(id_employee);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <AuthContext.Provider
-            value={{ user, loading, login, logout, signIn, handleDelete, newCategory }}
+            value={{ user, loading, login, logout, signIn, handleDelete, newCategory, newEmployee, handleDeleteEmployee }}
 
         >
             {children}

@@ -32,7 +32,7 @@ export default function () {
                         <Link to="/viewCategories">Categorias</Link>
                     </div>
                     <div className="nav-item">
-                        <Link to="/">Funcionários</Link>
+                        <Link to="/viewEmployees">Funcionários</Link>
                     </div>
                     <div className="nav-item">
                         <Link to="/">Área</Link>
