@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import { api, createSession, createUser, 
-    deleteCategory, createCategory, editCategory, createEmployee, deleteEmployee } from '../Services/api';
+    deleteCategory, createCategory, updateCategory, createEmployee, deleteEmployee } from '../Services/api';
 
 
 export const AuthContext = createContext();
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleEditCategory = async (id_category, name, type, description) => {
         try {
-            await editCategory(id_category, name, type, description);
+            await updateCategory(id_category, name, type, description);
             navigate("/editCategory");
         } catch (error) {
             //Fazer um modal de erro aparecer aqui

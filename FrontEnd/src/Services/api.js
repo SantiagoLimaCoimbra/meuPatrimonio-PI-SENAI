@@ -56,7 +56,7 @@ export const createCategory = async (name, type, description) => {
   }
 };
 
-export const editCategory = async (id_category, name, type, description) => {
+export const updateCategory = async (id_category, name, type, description) => {
   try{
     const response = await api.put("/categories", {id_category, name, type, description });
     return response.data;
