@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import ErroDialog from '../Components/erroDialogComponent/erroDialog';
 
 import { api, createSession, createUser, 
     deleteCategory, createCategory, createEmployee, deleteEmployee } from '../Services/api';
@@ -12,6 +12,8 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [errorOpen, setErrorOpen] = useState(false); // Novo estado para controlar o diálogo de erro
+    const [errorDialogMsg, setErrorDialogMsg] = useState("");
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
@@ -49,6 +51,7 @@ export const AuthProvider = ({ children }) => {
 
         } catch (error) {
             console.log(error);
+            handleErrorOpen("Verifique se o cpf e a senha estão corretos! Caso estejam, certifique-se de que estejam cadastrados no sistema.");
         }
     }
 
@@ -70,7 +73,7 @@ export const AuthProvider = ({ children }) => {
             navigate("/login");
     
         } catch (error) {
-            //Fazer um modal de erro aparecer aqui
+            handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema! Tente entrar.");
             console.log(error);
         }
     };
@@ -80,7 +83,7 @@ export const AuthProvider = ({ children }) => {
             await createCategory(name, type, description);
             navigate("/viewCategories");
         } catch (error) {
-            //Fazer um modal de erro aparecer aqui
+            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
             console.log(error);
         }
     }
@@ -90,6 +93,7 @@ export const AuthProvider = ({ children }) => {
             await deleteCategory(id_category);
         } catch (error) {
             console.log(error);
+            handleErrorOpen("Não foi possível deletar a categoria!");
         }
     };
 
@@ -98,8 +102,8 @@ export const AuthProvider = ({ children }) => {
             await createEmployee(name_employee, cpf, email, position);
             navigate("/viewEmployees");
         } catch (error) {
-            //Fazer um modal de erro aparecer aqui
             console.log(error);
+            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
         }
     }
 
@@ -108,8 +112,14 @@ export const AuthProvider = ({ children }) => {
             await deleteEmployee(id_employee);
         } catch (error) {
             console.log(error);
+            handleErrorOpen("Não foi possível deletar o funcionário!");
         }
     }
+
+    const handleErrorOpen = (errorMessage) => {
+        setErrorOpen(true);
+        setErrorDialogMsg(errorMessage);
+    };
 
     return (
         <AuthContext.Provider
@@ -117,6 +127,12 @@ export const AuthProvider = ({ children }) => {
 
         >
             {children}
+            <ErroDialog
+                open={errorOpen} // Estado que controla a exibição do diálogo
+                handleClose={() => setErrorOpen(false)} // Função para fechar o diálogo
+                dialogTitle="Ops!" // Título do diálogo
+                dialogMsg={errorDialogMsg} // Mensagem de erro
+            />
         </AuthContext.Provider>
     )
 
