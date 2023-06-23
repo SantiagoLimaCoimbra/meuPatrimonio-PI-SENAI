@@ -4,12 +4,14 @@ import '../../../css/styles.scss';
 import './newEmployee.scss';
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
 import { AuthContext } from "../../../Contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function NewEmployee() {
 
@@ -19,12 +21,17 @@ export default function NewEmployee() {
     const [cpf, setCPF] = useState("");
     const [email, setEmail] = useState("");
     const [position, setPosition] = useState("");
+    const navigate = useNavigate();
 
     const options = [
         { value: "Gerente", label: "Gerente" },
         { value: "Efetivo", label: "Efetivo" },
         { value: "Estagiario", label: "Estagiário" },
       ];
+
+    const handleBack = (e) => {
+        navigate("/viewEmployees");
+    }
 
     const handleOptionChange = (event) => {
         setPosition(event.target.value);
@@ -82,7 +89,8 @@ export default function NewEmployee() {
                                 onChange={handleOptionChange}
                             />
                     </div>
-                    <div className="btnsNewCategory">
+                    <div className="btnsNewEmployee">
+                        <BtnRed btnMessage={"Cancelar"} onClick={handleBack} />
                         <Btn type={"submit"} btnMessage={"Cadastrar"} />
                     </div>
                 </form>
