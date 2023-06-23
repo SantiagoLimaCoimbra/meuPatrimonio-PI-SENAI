@@ -1,0 +1,54 @@
+@import "../../css/styles.scss";
+
+.error-dialog-container {
+
+    .error-dialog-title {
+        background-color: $dark-green;
+        color: $light-shine;
+        // text-align: center;
+        font-size: 1.6em;
+    }
+
+    .error-dialog-body {
+        background-color: $light-shine;
+        color: $dark-brown;
+        padding: 1.5em 1.5em !important;
+        font-size: 1.3em;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .error-dialog-options {
+        background-color: $light-shine;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        
+        .btn-delete {
+            color: $light-shine;
+            background-color: $red-highlight;
+            border: 1px solid $red-highlight;
+            font-size: 1.1em;
+            
+            &:hover {
+                background-color: $light-shine;
+                color: $red-highlight;
+                border: 1px solid $red-highlight;
+            }
+        }
+
+        .btn-cancel {
+            color: $dark-brown;
+            border: 1px solid $dark-brown;
+            font-size: 1.1em;
+
+            &:hover {
+                background-color: $dark-brown;
+                color: $light-shine;
+            } 
+        }
+    }
+
+}
