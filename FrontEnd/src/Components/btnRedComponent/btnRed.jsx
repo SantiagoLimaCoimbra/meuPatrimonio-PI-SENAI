@@ -1,14 +1,15 @@
 import { React } from "react";
 import '../../css/styles.scss';
-import '../btnGreenComponent/btn.scss'
+import './btnRed.scss'
 
 
 export default function(props) {
 
     return (
         <button 
-            className="btn"
-            type={props.type}>
+            className="btnRed"
+            type={props.type}
+            onClick={props.onClick}>
                 {props.btnMessage}
         </button>  
     );

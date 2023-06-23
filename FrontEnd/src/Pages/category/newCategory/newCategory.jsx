@@ -4,12 +4,14 @@ import '../../../css/styles.scss';
 import './newCategory.scss';
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
 import { AuthContext } from "../../../Contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function NewCategory() {
 
@@ -18,9 +20,10 @@ export default function NewCategory() {
     const [name, setCategoryName] = useState("");
     const [type, setType] = useState("");
     const [description, setDescription] = useState("");
+    const navigate = useNavigate();
 
     const options = [
-        { value: "Tangivel", label: "Tangivel" },
+        { value: "Tangivel", label: "Tangível" },
         { value: "Intangivel", label: "Intangivel" },
         { value: "Movel", label: "Móvel" },
         { value: "Imovel", label: "Imóvel"}
@@ -29,6 +32,10 @@ export default function NewCategory() {
     const handleOptionChange = (event) => {
         setType(event.target.value);
     };
+
+    const handleBack = (e) => {
+        navigate("/viewCategories");
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -76,6 +83,7 @@ export default function NewCategory() {
                         </div>
                     </div>
                     <div className="btnsNewCategory">
+                        <BtnRed btnMessage={"Cancelar"} onClick={handleBack} />
                         <Btn type={"submit"} btnMessage={"Cadastrar"} />
                     </div>
                 </form>

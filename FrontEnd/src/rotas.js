@@ -27,6 +27,7 @@ import ViewAreas from "./Pages/area/viewAreas/viewAreas";
 import NewArea from "./Pages/area/newArea/newArea";
 import EditArea from "./Pages/area/editArea/editArea";
 
+// Loading
 import Loading from "./Components/loadingComponent/loading";
 
 
