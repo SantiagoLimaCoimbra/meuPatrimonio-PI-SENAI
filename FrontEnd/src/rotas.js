@@ -38,8 +38,6 @@ export default function Rotas() {
 
       const { loading, user } = useContext(AuthContext);
 
-      // console.log(context);
-
       if (loading) {
          return <Loading />
       }
@@ -67,7 +65,7 @@ export default function Rotas() {
 
                <Route element={ <Private> <ViewCategories/> </Private>} path="/viewCategories" />
                <Route element={ <Private> <NewCategory/> </Private>} path="/newCategory"/>
-               <Route element={ <Private> <EditCategory/> </Private>} path="/editCategory"/>
+               <Route element={ <Private> <EditCategory/> </Private>} path="/editCategory/:id_category"/>
 
                <Route element={ <Private> <ViewEmployees/> </Private>} path="/viewEmployees"/>
                <Route element={ <Private> <NewEmployee/> </Private>} path="/newEmployee"/>

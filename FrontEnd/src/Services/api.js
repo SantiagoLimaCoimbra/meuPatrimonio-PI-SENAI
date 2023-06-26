@@ -67,6 +67,17 @@ export const updateCategory = async (id_category, name, type, description) => {
   }
 };
 
+export const getCategory = async (id_category) => {
+  try{
+    const response = await api.get(`/categories/${id_category}`);
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao retornar categoria");
+  }
+};
+
 export const deleteCategory = async (id_category) => {
   try {
     const response = await api.delete(`/categories/${id_category}`);

@@ -23,7 +23,7 @@ export default function ViewCategories() {
   };
 
   const handleEdit = (id_category) => {
-    navigate("/editCategory");
+    navigate(`/editCategory/${id_category}`);
   };
 
   useEffect(() => {
