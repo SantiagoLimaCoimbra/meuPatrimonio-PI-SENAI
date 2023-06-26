@@ -56,6 +56,17 @@ export const createCategory = async (name, type, description) => {
   }
 };
 
+export const updateCategory = async (id_category, name, type, description) => {
+  try{
+    const response = await api.put("/categories", {id_category, name, type, description });
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao editar categoria");
+  }
+};
+
 export const deleteCategory = async (id_category) => {
   try {
     const response = await api.delete(`/categories/${id_category}`);

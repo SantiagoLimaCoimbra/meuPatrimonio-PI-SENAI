@@ -23,7 +23,7 @@ export default function ViewCategories() {
   };
 
   const handleEdit = (id_category) => {
-    // Levar para a página de edição
+    navigate("/editCategory");
   };
 
   useEffect(() => {
