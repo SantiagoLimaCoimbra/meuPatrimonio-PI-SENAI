@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import '../../../css/App.css';
+import '../../../css/styles.scss';
+import './editEmployee.scss';
+
+import Btn from "../../../Components/brownBtnComponent/btn";
+import Input from "../../../Components/inputComponent/input";
+import Background from '../../../Components/backgroundComponent/background'
+import Menu from '../../../Components/menuComponent/menu';
+import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
+
+import { getEmployee, updateEmployee } from "../../../Services/api";
+
+// import { AuthContext } from "../../../Contexts/auth";
+
+export default function EditEmployee() {
+    const { id_employee } = useParams();
+    const navigate = useNavigate();
+
+    const [name_employee, setEmployeeName] = useState("");
+    const [cpf, setCPF] = useState("");
+    const [email, setEmail] = useState("");
+    const [position, setPosition] = useState("");
+
+  const options = [
+    { value: "Gerente", label: "Gerente" },
+    { value: "Efetivo", label: "Efetivo" },
+    { value: "Estagiario", label: "Estagiário" }
+  ];
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      try {
+        const employee = await getEmployee(id_employee);
+        setEmployeeName(employee.name_employee);
+        setCPF(employee.cpf);
+        setEmail(employee.email);
+        setPosition(employee.position);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchEmployee();
+  }, [id_employee]);
+
+
+  const handleOptionChange = (event) => {
+    setPosition(event.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await updateEmployee(id_employee, name_employee, cpf, email, position);
+      console.log("Funcionário atualizado com sucesso!");
+      navigate("/viewEmployees")
+    } catch (error) {
+      console.log(error);
+      // Exibir um modal de erro ou tratar o erro de alguma outra forma
+    }
+  };
+
+
+  return (
+    <div className="newEmployeePage">
+      <Menu />
+      <Background />
+      <div className="newEmployee">
+        <form onSubmit={handleSubmit} className="newEmployeeForm">
+          <h1>Editar Funcionário</h1>
+          <div className="inputsEmployee">
+            <Input
+                id="name"
+                type={"text"}
+                placeholder={"Nome"}
+                value={name_employee}
+                required={true}
+                onChange={(e) => setEmployeeName(e.target.value)}
+            />
+            <Input
+                id="email"
+                type={"text"}
+                placeholder={"Email"}
+                value={email}
+                required={true}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+                id="cpf"
+                type={"text"}
+                mask={"000.000.000-00"} 
+                placeholder={"CPF"}
+                value={cpf}
+                required={true}
+                onChange={(e) => setCPF(e.target.value)}
+            />
+            <DropdownInput
+                id="cpf"
+                type={"type"}
+                placeholder={"Posição"}
+                value={position}
+                required={true}
+                options={options}
+                onChange={handleOptionChange}
+            />
+            </div>
+          <div className="btnsNewEmployee">
+            <Btn type={"submit"} btnMessage={"Editar"} />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}

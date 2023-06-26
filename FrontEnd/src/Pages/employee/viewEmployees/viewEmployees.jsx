@@ -24,7 +24,7 @@ export default function ViewCategories() {
   };
 
   const handleEdit = (id_employee) => {
-    // Levar para a página de edição
+    navigate(`/editEmployee/${id_employee}`);
   };
 
   useEffect(() => {

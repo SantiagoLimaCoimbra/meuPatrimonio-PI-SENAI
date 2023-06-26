@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
 import './editCategory.scss';
@@ -10,28 +10,29 @@ import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { updateCategory } from "../../../Services/api";
+import { getCategory, updateCategory } from "../../../Services/api";
 
-import { AuthContext } from "../../../Contexts/auth";
+// import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditCategory() {
     const { id_category } = useParams();
+    const navigate = useNavigate();
 
   const [name, setCategoryName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
 
   const options = [
-    { value: "tangiveis", label: "Tangível" },
-    { value: "intangiveis", label: "Intangível" },
-    { value: "moveis", label: "Móvel" },
-    { value: "imoveis", label: "Imóvel" }
+    { value: "Tangivel", label: "Tangível" },
+    { value: "Intangivel", label: "Intangivel" },
+    { value: "Movel", label: "Móvel" },
+    { value: "Imovel", label: "Imóvel"}
   ];
 
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const category = await updateCategory(id_category);
+        const category = await getCategory(id_category);
         setCategoryName(category.name);
         setType(category.type);
         setDescription(category.description);
@@ -54,7 +55,7 @@ export default function EditCategory() {
     try {
       await updateCategory(id_category, name, type, description);
       console.log("Categoria atualizada com sucesso!");
-      // Redirecionar para a página de visualização de categorias, ou exibir uma mensagem de sucesso
+      navigate("/viewCategories")
     } catch (error) {
       console.log(error);
       // Exibir um modal de erro ou tratar o erro de alguma outra forma
