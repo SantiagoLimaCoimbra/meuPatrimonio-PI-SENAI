@@ -2,6 +2,7 @@ package patrimoniumsenai.apipatrimonium.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import patrimoniumsenai.apipatrimonium.category.Category;
@@ -27,6 +28,19 @@ public class CategoryController {
     @GetMapping
     public List<ReadCategoryDTO> read(){
         return repository.findAll().stream().map(ReadCategoryDTO::new).toList();
+    }
+
+    /*
+    @GetMapping("/{id_category}") //Nao funfa
+    public ReadCategoryDTO edit(Long id_category){
+        return repository.findAllById(id_category) ;
+    }
+     */
+
+    @GetMapping("/{id_category}")
+    public ResponseEntity<?> listarId(@PathVariable Long id_category){
+        Category category = repository.findById(id_category).get();
+        return ResponseEntity.ok(category);
     }
 
     @PutMapping

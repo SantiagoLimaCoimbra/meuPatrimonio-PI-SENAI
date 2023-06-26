@@ -9,7 +9,7 @@
 
 
     .login {
-        max-width: 30%;
+        width: 600px;
         height: fit-content;
         display: flex;
         margin: auto;
@@ -30,7 +30,7 @@
             background-color: transparent;
             font-size: 3em;
             padding: 20px 0 20px 0;
-            font-weight: bold
+            font-weight: bold;
         }
     
         label {
@@ -45,7 +45,7 @@
             justify-content: center;
             flex-direction: column;
             background-color: transparent;
-            width: 80%;
+            width: 400px;
             padding: 20px 0 20px 0;
         }
     
@@ -73,3 +73,15 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+
+    .loginPage{
+        
+        .login{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+        }
+    }
+
+}

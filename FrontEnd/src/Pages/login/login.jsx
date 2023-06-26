@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
 
-    const { authenticated, login, user } = useContext(AuthContext);
+    const { login, user } = useContext(AuthContext);
 
     const [cpf, setCpf] = useState("");
     const [password, setPassword] = useState("");

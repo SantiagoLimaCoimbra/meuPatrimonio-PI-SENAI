@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     height: 84px;
-
+    
     h2 {
         color: $light;
         font-weight: 200;
@@ -27,6 +27,7 @@
             padding: 5px 0 5px 0;
             border-radius: 10px;
             margin: 0 1px 0 1px;
+            overflow: hidden;
     
         }
     
