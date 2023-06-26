@@ -118,6 +118,28 @@ export const createEmployee = async (name_employee, cpf, email, position) => {
   }
 };
 
+export const updateEmployee = async (id_employee, name_employee, cpf, email, position) => {
+  try{
+    const response = await api.put("/employees", { id_employee, name_employee, cpf, email, position });
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao editar funcionário");
+  }
+};
+
+export const getEmployee = async (id_employee) => {
+  try{
+    const response = await api.get(`/employees/${id_employee}`);
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao retornar Funcionário");
+  }
+};
+
 export const deleteEmployee = async (id_employee) => {
   try {
     const response = await api.delete(`/employees/${id_employee}`);
