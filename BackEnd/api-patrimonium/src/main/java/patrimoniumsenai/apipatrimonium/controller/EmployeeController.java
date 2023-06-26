@@ -2,8 +2,10 @@ package patrimoniumsenai.apipatrimonium.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import patrimoniumsenai.apipatrimonium.category.Category;
 import patrimoniumsenai.apipatrimonium.employee.*;
 
 import java.util.List;
@@ -24,6 +26,12 @@ public class EmployeeController {
     @GetMapping
     public List<ReadEmployeeDTO> read(){
         return repository.findAll().stream().map(ReadEmployeeDTO::new).toList();
+    }
+
+    @GetMapping("/{id_employee}")
+    public ResponseEntity<?> readId(@PathVariable Long id_employee){
+        Employee employee = repository.findById(id_employee).get();
+        return ResponseEntity.ok(employee);
     }
 
     @PutMapping

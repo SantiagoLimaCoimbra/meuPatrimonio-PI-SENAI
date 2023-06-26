@@ -30,15 +30,8 @@ public class CategoryController {
         return repository.findAll().stream().map(ReadCategoryDTO::new).toList();
     }
 
-    /*
-    @GetMapping("/{id_category}") //Nao funfa
-    public ReadCategoryDTO edit(Long id_category){
-        return repository.findAllById(id_category) ;
-    }
-     */
-
     @GetMapping("/{id_category}")
-    public ResponseEntity<?> listarId(@PathVariable Long id_category){
+    public ResponseEntity<?> readId(@PathVariable Long id_category){
         Category category = repository.findById(id_category).get();
         return ResponseEntity.ok(category);
     }
