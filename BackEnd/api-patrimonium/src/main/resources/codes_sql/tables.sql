@@ -26,3 +26,13 @@ create table Employee (
 
     primary key(id_employee)
 );
+
+create table Area (
+    id_area int not null auto_increment,
+    name_area varchar(45) not null,
+    description_area varchar(45),
+	id_employee int not null,
+
+    primary key(id_area),
+    foreign key(id_employee) references Employee(id_employee)
+);
