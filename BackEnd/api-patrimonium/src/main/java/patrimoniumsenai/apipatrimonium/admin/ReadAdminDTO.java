@@ -1,9 +1,9 @@
 package patrimoniumsenai.apipatrimonium.admin;
 
-public record ReadAdminDTO(String cpf, String password) {
+public record ReadAdminDTO(Long id, String name, String email, String cpf, String password) {
 
     public ReadAdminDTO(Admin admin){
-        this(admin.getCpf(), admin.getPassword());
+        this(admin.getId(), admin.getName(), admin.getEmail(), admin.getCpf(), admin.getPassword());
     }
 
 }
