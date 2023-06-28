@@ -1,13 +1,13 @@
 @import '../../css/styles.scss';
 
-// header do cara
+
 .navbar {
     background-color: $dark-green;
-    // border-radius: 0px 0px 30px 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 84px;
+    overflow: hidden;
     
     h2 {
         color: $light;
@@ -15,9 +15,9 @@
         display: none;
     }
     
-    // nav do cara
     .nav{
         display: flex;
+        align-items: center;
         justify-content: space-between;
         padding: 20px;
         width: 95%;
@@ -25,10 +25,14 @@
 
         .nav-item{
             padding: 5px 0 5px 0;
-            border-radius: 10px;
+            border-radius: 10px !important;
             margin: 0 1px 0 1px;
             overflow: hidden;
-    
+            color: $light;
+
+            img {
+                width: 30px;
+            }
         }
     
         .nav-item:hover {        
@@ -37,18 +41,32 @@
                 color: $dark-green;
             }
         }
-        
+
         .nav-items-left, .nav-items-right {
             display: flex;
             flex-direction: row;
+            align-items: center;
             padding: 5px;
+
+            a {
+                background-color: $dark-green;
+                color: $light;
+                text-decoration: none;
+                padding: 15px !important;
+                font-size: 18px;
+            }
+        }
+
+        .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+            min-height: auto;
+            width: 100px;
         }
     
-        a {
+        button {
             background-color: $dark-green;
             color: $light;
             text-decoration: none;
-            padding: 15px;
+            padding: 15px !important;
             font-size: 18px;
         }
 
@@ -71,6 +89,8 @@
     .nav-open-btn img {
         width: 30px;
     }
+
+    
 }
 
 // Móvel: 360 x 640.
@@ -109,27 +129,49 @@
             .nav-items-left, .nav-items-right {
                 padding: 10px;
 
-                .nav-item {
-                    padding: 10px 0 10px 0;
-                }
             }
-        }
 
+            .nav-item {
+                padding: 10px 0 10px 0;
+            }
+
+        }
 
         .nav-btn {
             display: flex;
-            // visibility: visible;
-            // opacity: 1;
         }
 
         .nav-close-btn{
-            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
             top: 2rem;
             right: 2rem;
         }
     
         .responsive_nav{
             transform: translateY(100vh);
+        }
+
+        .no-responsive {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 456px){
+    .navbar {
+
+        .nav{
+            height: fit-content;
+            z-index: 1;
+            gap: .1em;
+
+            .nav-items-left, .nav-items-right {
+                padding: 5px;
+                flex-direction: column;
+            }
         }
     }
 }
