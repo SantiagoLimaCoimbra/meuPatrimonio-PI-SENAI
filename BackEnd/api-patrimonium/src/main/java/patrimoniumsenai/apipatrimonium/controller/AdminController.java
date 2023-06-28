@@ -2,6 +2,7 @@ package patrimoniumsenai.apipatrimonium.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import patrimoniumsenai.apipatrimonium.admin.Admin;
@@ -25,9 +26,17 @@ public class AdminController {
         repository.save(new Admin(data));
     }
 
+    //Excluir este metodo no quando for para producao
     @GetMapping
     public List<ReadAdminDTO> read(){
         return repository.findAll().stream().map(ReadAdminDTO::new).toList();
+    }
+
+    //Excluir este metodo no quando for para producao
+    @GetMapping("/{id}")
+    public ResponseEntity<?> readId(@PathVariable Long id){
+        Admin admin = repository.findById(id).get();
+        return ResponseEntity.ok(admin);
     }
 
 }
