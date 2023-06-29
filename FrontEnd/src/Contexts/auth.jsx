@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ErroDialog from '../Components/erroDialogComponent/erroDialog';
 
 import { api, createSession, createUser, 
-    deleteCategory, createCategory, updateCategory, createEmployee, deleteEmployee } from '../Services/api';
+    deleteCategory, createCategory, updateCategory, createEmployee, deleteEmployee, updateArea, createArea, deleteArea } from '../Services/api';
 
 
 export const AuthContext = createContext();
@@ -107,6 +107,25 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const newArea = async (name_area, employee, description_area) => {
+        try {
+            await createArea(name_area, employee, description_area);
+            navigate("/viewAreas");
+        } catch (error) {
+            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
+            console.log(error);
+        }
+    }
+
+    const handleDeleteArea = async (id_area) => {
+        try {
+            await deleteArea(id_area);
+        } catch (error) {
+            console.log(error);
+            handleErrorOpen("Não foi possível deletar a categoria!");
+        }
+    };
+
     const newEmployee = async (name_employee, cpf, email, position) => {
         try {
             await createEmployee(name_employee, cpf, email, position);
@@ -133,7 +152,10 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, loading, login, logout, signIn, handleDelete, newCategory, handleEditCategory, newEmployee, handleDeleteEmployee }}
+            value={{ user, loading, login, logout, signIn, handleDelete,
+                newArea ,handleDeleteArea,
+                newCategory, handleEditCategory,
+                newEmployee, handleDeleteEmployee }}
 
         >
             {children}

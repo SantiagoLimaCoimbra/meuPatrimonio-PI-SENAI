@@ -88,6 +88,70 @@ export const deleteCategory = async (id_category) => {
   }
 };
 
+//AREA
+
+export const useFetchAreas = () => {
+  const [areas, setAreas] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/areas");
+        setAreas(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return areas;
+};
+
+export const createArea = async (name_area, description_area, employee) => {
+  try {
+    const response = await api.post("/areas", { name_area, description_area, employee });
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data); // Imprime a resposta de erro do servidor
+    throw new Error("Erro ao criar area");
+  }
+};
+
+export const updateArea = async (id_area, name_area, description_area, employee) => {
+  try{
+    const response = await api.put("/areas", {id_area, name_area, description_area, employee});
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao editar área");
+  }
+};
+
+export const getArea = async (id_area) => {
+  try{
+    const response = await api.get(`/areas/${id_area}`);
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao retornar área");
+  }
+};
+
+export const deleteArea = async (id_area) => {
+  try {
+    const response = await api.delete(`/areas/${id_area}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao excluir a área");
+  }
+};
+
 export const useFetchEmployees = () => {
   const [employess, setEmployees] = useState([]);
 
