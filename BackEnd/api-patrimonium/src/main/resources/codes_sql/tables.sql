@@ -36,3 +36,17 @@ create table Area (
     primary key(id_area),
     foreign key(id_employee) references Employee(id_employee)
 );
+
+create table Asset (
+    id_asset int not null auto_increment,
+    name_asset varchar(45) not null,
+    account_code varchar(9),
+    amount int not null,
+    registration_date varchar(45),
+	id_category int not null,
+	id_area int not null,
+
+    primary key(id_asset),
+    foreign key(id_category) references Category(id_category),
+    foreign key(id_area) references Area(id_area)
+);
