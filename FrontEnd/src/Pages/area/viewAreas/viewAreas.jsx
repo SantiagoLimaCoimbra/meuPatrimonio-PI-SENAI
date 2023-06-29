@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
 import './viewAreas.scss';
@@ -7,19 +7,23 @@ import './viewAreas.scss';
 import Btn from "../../../Components/brownBtnComponent/btn";
 import Menu from '../../../Components/menuComponent/menu';
 import Table from "../../../Components/tableComponent/table";
-import { useFetchAreas, deleteArea, getEmployee } from "../../../Services/api";
 import Dialog from "../../../Components/dialogComponent/dialog";
-import { useNavigate } from "react-router-dom";
+
+import { useFetchAreas, deleteArea } from "../../../Services/api";
 
 export default function ViewAreas() {
+  
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
+  
   const areas = useFetchAreas();
-  const navigate = useNavigate();
-  const { id_employee, name_employee } = useParams();
-  const [ setEmployeeName] = useState("");
 
+  // const combinedData = areas.concat(employees);
+
+  const navigate = useNavigate();
+
+  const { id_employee } = useParams();
 
   const handlePageChange = (value) => {
     
@@ -34,22 +38,6 @@ export default function ViewAreas() {
       window.location.reload(); // Recarrega a página após a exclusão
     }
   }, [isDeleted]);
-
-  useEffect(() => {
-    const fetchEmployee = async () => {
-      try {
-        const employeeName = await getEmployee(name_employee);
-        setEmployeeName(employeeName.name_employee);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchEmployee();
-  }, [name_employee]);
-
-  console.log("id",getEmployee.id_employee)
-      console.log("nome",getEmployee.name_employee)
 
 
   const handleOpenDialog = (id_area) => {
@@ -77,6 +65,7 @@ export default function ViewAreas() {
     { key: "name_employee", label: "Colaborador" }
   ];
 
+
   const handleNewArea = () => {
     navigate("/newArea");
   };
@@ -103,6 +92,7 @@ export default function ViewAreas() {
           idPropertyName="id_area"
           cellTitles={cellTitles}
         />
+
         {openDialog && (
           <Dialog
             open={openDialog}

@@ -97,22 +97,26 @@ export const useFetchAreas = () => {
     const fetchData = async () => {
       try {
         const response = await api.get("/areas");
-        setAreas(response.data);
+        setAreas(response.data.map((obj)=> ({...obj, name_employee: obj.employee.name_employee})));
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-
+    
     fetchData();
   }, []);
 
-  return areas;
+
+  return (areas);
 };
+
+
 
 export const createArea = async (name_area, description_area, employee) => {
   try {
     const response = await api.post("/areas", { name_area, description_area, employee });
-    return response.data;
+    return response.data.map((obj)=> ({...obj, name_employee: obj.employee.name_employee}));
   } catch (error) {
     //Fazer um modal de erro
     console.log(error.response.data); // Imprime a resposta de erro do servidor
