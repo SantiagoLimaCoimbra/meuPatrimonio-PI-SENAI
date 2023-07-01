@@ -1,5 +1,4 @@
 import { React, useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
 import './newArea.scss';
@@ -13,96 +12,97 @@ import DropdownInput from "../../../Components/dropdownInputComponent/dropdownIn
 
 import { AuthContext } from "../../../Contexts/auth";
 import { useNavigate } from "react-router-dom";
-import { useFetchAreas, getEmployee, updateArea } from "../../../Services/api";
-
 
 export default function NewArea() {
+  const { newArea, getEmployeeData } = useContext(AuthContext);
+  const [name_area, setAreaName] = useState("");
+  const [description_area, setDescription] = useState("");
+  const [employee, setEmployee] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
+  const navigate = useNavigate();
 
-    const { newArea } = useContext(AuthContext);
-    const { id_employee } = useParams();
-    const employee = updateArea();
+  console.log(employee);
 
-    const areas = useFetchAreas();
-
-    const [name_area, setAreaName] = useState("");
-    const [description_area, setDescription] = useState("");
-    const [name_employee, setEmployeeName] = useState("");
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchEmployee = async () => {
-          try {
-            const employee = await getEmployee(employee.id_employee);
-            setEmployeeName(employee.name_employee);
-            console.log("UAAAAAA")
-          } catch (error) {
-            console.log(error);
-          }
-        };
-    
-        fetchEmployee();
-      }, []);
-
-    const handleOptionChange = (event) => {
-        setEmployeeName(event.target.value);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getEmployeeData();
+        setEmployeeData(data.map((employee) => ({ value: employee.id_employee, label: employee.name_employee })));
+        console.log(employeeData); 
+        console.log(getEmployeeData());
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    const handleBack = (e) => {
-        navigate("/viewAreas");
-    }
+    fetchData();
+  }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        console.log("Submit", {name_area, name_employee, description_area } );
-        newArea(name_area, name_employee, description_area);
-    }
+  const handleBack = () => {
+      navigate("/viewAreas");
+    };
     
-    return (
-        <div className="newAreaPage">
-            <Menu />
-            <Background />
-            <div className="newArea">
-               
-                <form onSubmit={handleSubmit} className="newAreaForm">
-                <h1>Cadastrar área</h1>
-                    <div className="inputsArea">
-                        <div className="areaRow1">
-                            <Input
-                                id="name_area"
-                                type={"text"}
-                                placeholder={"Nome"}
-                                value={name_area}
-                                required={true}
-                                onChange={(e) => setAreaName(e.target.value)}
-                            />
-                            <DropdownInput
-                                id="employee"
-                                type={"type"}
-                                placeholder={"Colaborador"}
-                                value={name_employee}
-                                required={true}
-                                options={areas}
-                                onChange={handleOptionChange}
-                            />
-                        </div>
-                        <div className="areaRow2">
-                            <Input
-                                id="descriptionArea"
-                                type={"description"}
-                                placeholder={"Descrição"}
-                                value={description_area}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    <div className="btnsNewArea">
-                        <BtnRed btnMessage={"Cancelar"} onClick={handleBack} />
-                        <Btn type={"submit"} btnMessage={"Cadastrar"} />
-                    </div>
-                </form>
-            </div>
-        </div>
+    const handleOptionChange = (event) => {
+      setEmployee(event);
+    };
 
-    );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+    try {
+      await newArea(name_area, description_area, employee);
+      navigate("/viewAreas");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="newAreaPage">
+      <Menu />
+      <Background />
+      <div className="newArea">
+        <form onSubmit={handleSubmit} className="newAreaForm">
+          <h1>Cadastrar área</h1>
+          <div className="inputsArea">
+            <div className="areaRow1">
+              <Input
+                id="name_area"
+                type="text"
+                placeholder="Nome"
+                value={name_area}
+                required={true}
+                onChange={(e) => setAreaName(e.target.value)}
+              />
+              <DropdownInput
+                id="employee"
+                type="type"
+                placeholder={"Funcionário"}
+                value={employee}
+                required={true}
+                options={employeeData}
+                onChange={(e) => handleOptionChange(e.target.value)}
+              />
+            </div>
+            <div className="areaRow2">
+              <Input
+                id="descriptionArea"
+                type="description"
+                placeholder="Descrição"
+                value={description_area}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="btnsNewArea">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
+            <Btn type="submit" btnMessage="Cadastrar" />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }

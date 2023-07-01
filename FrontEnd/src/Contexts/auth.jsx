@@ -2,9 +2,21 @@ import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ErroDialog from '../Components/erroDialogComponent/erroDialog';
 
-import { api, createSession, createUser, 
-    deleteCategory, createCategory, updateCategory, createEmployee, deleteEmployee, updateArea, createArea, deleteArea } from '../Services/api';
-
+import {
+    api,
+    createSession,
+    createUser,
+    deleteCategory,
+    createCategory,
+    updateCategory,
+    createEmployee,
+    deleteEmployee,
+    updateArea,
+    createArea,
+    deleteArea,
+    getEmployee,
+  } from '../Services/api';
+  
 
 export const AuthContext = createContext();
 
@@ -107,16 +119,32 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const newArea = async (name_area, employee, description_area) => {
+    const newArea = async (name_area, description_area, employee) => {
+        
         try {
-            await createArea(name_area, employee, description_area);
-            console.log("Ca estou")
+            await createArea(name_area, description_area, employee);
             navigate("/viewAreas");
         } catch (error) {
             handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
             console.log(error);
         }
     }
+
+    const getEmployeeData = async () => {
+        try {
+          const employees = await getEmployee();
+          const employeeData = employees.map(({ id_employee, name_employee }) => ({
+            id_employee,
+            name_employee,
+          }));
+          return employeeData;
+        } catch (error) {
+          console.log(error);
+          throw new Error("Erro ao obter dados dos funcionários");
+        }
+      };
+      
+      
 
     const handleDeleteArea = async (id_area) => {
         try {
@@ -153,12 +181,22 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, loading, login, logout, signIn, handleDelete,
-                newArea ,handleDeleteArea,
-                newCategory, handleEditCategory,
-                newEmployee, handleDeleteEmployee }}
-
-        >
+        value={{
+          user,
+          loading,
+          login,
+          logout,
+          signIn,
+          handleDelete,
+          newArea,
+          handleDeleteArea,
+          newCategory,
+          handleEditCategory,
+          newEmployee,
+          handleDeleteEmployee,
+          getEmployeeData,
+        }}
+      >
             {children}
             <ErroDialog
                 open={errorOpen} // Estado que controla a exibição do diálogo

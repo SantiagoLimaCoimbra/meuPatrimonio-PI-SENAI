@@ -97,12 +97,16 @@ export const useFetchAreas = () => {
     const fetchData = async () => {
       try {
         const response = await api.get("/areas");
-        setAreas(response.data.map((obj)=> ({...obj, name_employee: obj.employee.name_employee})));
+        setAreas(response.data.map(({ employee, ...rest }) => ({
+          ...rest,
+          name_employee: employee.name_employee,
+        })));
         console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     };
+
     
     fetchData();
   }, []);
@@ -113,13 +117,17 @@ export const useFetchAreas = () => {
 
 
 
-export const createArea = async (name_area, description_area, employee) => {
+export const createArea = async (name_area, description_area, employee_id) => {
+
+  const employee = {"id_employee": employee_id};
+
   try {
-    const response = await api.post("/areas", { name_area, description_area, employee });
-    return response.data.map((obj)=> ({...obj, name_employee: obj.employee.name_employee}));
+    const response = await api.post("/areas", { name_area, description_area, employee});
+    return response.data;
   } catch (error) {
     //Fazer um modal de erro
-    console.log(error.response.data); // Imprime a resposta de erro do servidor
+    console.log("employee:", employee);
+    console.log(error.response.data); 
     throw new Error("Erro ao criar area");
   }
 };
@@ -131,6 +139,7 @@ export const updateArea = async (id_area, name_area, description_area, employee)
   } catch (error) {
     //Fazer um modal de erro
     console.log(error.response.data);
+    console.log(error);
     throw new Error("Erro ao editar área");
   }
 };
@@ -191,20 +200,18 @@ export const updateEmployee = async (id_employee, name_employee, cpf, email, pos
     const response = await api.put("/employees", { id_employee, name_employee, cpf, email, position });
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
     console.log(error.response.data);
     throw new Error("Erro ao editar funcionário");
   }
 };
 
-export const getEmployee = async (id_employee) => {
-  try{
-    const response = await api.get(`/employees/${id_employee}`);
+export const getEmployee = async () => {
+  try {
+    const response = await api.get('/employees');
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
-    console.log(error.response.data);
-    throw new Error("Erro ao retornar Funcionário");
+    console.log(error);
+    throw new Error('Erro ao obter funcionários');
   }
 };
 
