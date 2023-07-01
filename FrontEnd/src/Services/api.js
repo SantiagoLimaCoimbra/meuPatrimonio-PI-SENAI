@@ -15,6 +15,17 @@ export const createSession = async (cpf, password) => {
   }
 };
 
+export const getUser = async (id) => {
+  try{
+    const response = await api.get(`/admins/${id}`);
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao retornar usuário");
+  }
+};
+
 export const createUser = async (name, email, cpf, password) => {
   try {
     const response = await api.post("/admins", { name, email, cpf, password });
@@ -25,6 +36,8 @@ export const createUser = async (name, email, cpf, password) => {
     throw new Error("Erro ao criar usuário");
   }
 };
+
+
 
 export const useFetchCategories = () => {
   const [categories, setCategories] = useState([]);

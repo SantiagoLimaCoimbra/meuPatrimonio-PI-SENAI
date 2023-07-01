@@ -12,11 +12,10 @@ import DropdownInput from "../../../Components/dropdownInputComponent/dropdownIn
 
 import { getCategory, updateCategory } from "../../../Services/api";
 
-// import { AuthContext } from "../../../Contexts/auth";
-
 export default function EditCategory() {
-    const { id_category } = useParams();
-    const navigate = useNavigate();
+  
+  const { id_category } = useParams();
+  const navigate = useNavigate();
 
   const [name, setCategoryName] = useState("");
   const [type, setType] = useState("");
@@ -26,7 +25,7 @@ export default function EditCategory() {
     { value: "Tangivel", label: "Tangível" },
     { value: "Intangivel", label: "Intangivel" },
     { value: "Movel", label: "Móvel" },
-    { value: "Imovel", label: "Imóvel"}
+    { value: "Imovel", label: "Imóvel" }
   ];
 
   useEffect(() => {

@@ -29,24 +29,21 @@ export const AuthProvider = ({ children }) => {
     const login = async (cpf, password) => {
         try {
             const response = await createSession(cpf, password);
-            console.log(response);
-            console.log("login", response.data);
 
-            let loggedUser;
-            console.log(response.token);
             const token = response.token;
-
-            if (token) {
-                loggedUser = true;
-                console.log("chegou");
+            const user = {
+                name: response.name,
+                id: response.id,
+                cpf: response.cpf,
+                email: response.email
             }
 
-            localStorage.setItem("user", JSON.stringify(loggedUser));
+            localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
 
             api.defaults.headers.Authorization = `Bearer ${token}`;
 
-            setUser(loggedUser);
+            setUser(user);
             navigate("/");
 
         } catch (error) {
