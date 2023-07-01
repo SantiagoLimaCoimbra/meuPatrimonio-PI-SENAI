@@ -13,41 +13,35 @@ import DropdownInput from "../../../Components/dropdownInputComponent/dropdownIn
 
 import { AuthContext } from "../../../Contexts/auth";
 import { useNavigate } from "react-router-dom";
-import { getEmployee } from "../../../Services/api";
+import { useFetchAreas, getEmployee, updateArea } from "../../../Services/api";
 
 
 export default function NewArea() {
 
     const { newArea } = useContext(AuthContext);
     const { id_employee } = useParams();
+    const employee = updateArea();
+
+    const areas = useFetchAreas();
 
     const [name_area, setAreaName] = useState("");
     const [description_area, setDescription] = useState("");
     const [name_employee, setEmployeeName] = useState("");
     const navigate = useNavigate();
 
-    console.log("id",id_employee)
-      console.log("nome",name_employee)
-
     useEffect(() => {
         const fetchEmployee = async () => {
           try {
-            const employee = await getEmployee(id_employee);
+            const employee = await getEmployee(employee.id_employee);
             setEmployeeName(employee.name_employee);
+            console.log("UAAAAAA")
           } catch (error) {
             console.log(error);
           }
         };
     
         fetchEmployee();
-      }, [id_employee]);
-
-      console.log("id",id_employee)
-      console.log("nome",name_employee)
-
-    const options = [
-        { value: name_employee, label: name_employee }
-      ];
+      }, []);
 
     const handleOptionChange = (event) => {
         setEmployeeName(event.target.value);
@@ -88,7 +82,7 @@ export default function NewArea() {
                                 placeholder={"Colaborador"}
                                 value={name_employee}
                                 required={true}
-                                options={options}
+                                options={areas}
                                 onChange={handleOptionChange}
                             />
                         </div>

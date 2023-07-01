@@ -26,7 +26,9 @@ export default function EditArea() {
 
   const options = [
     // Chamar funcioários aqui
-    { value: "", label: "" },
+    { value: "Estagiario", label: "Estagiário" },
+    { value: "Efetivo", label: "Efetivo" },
+    { value: "Gerente", label: "Gerente" },
   ];
 
   useEffect(() => {

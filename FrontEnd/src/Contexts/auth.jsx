@@ -110,6 +110,7 @@ export const AuthProvider = ({ children }) => {
     const newArea = async (name_area, employee, description_area) => {
         try {
             await createArea(name_area, employee, description_area);
+            console.log("Ca estou")
             navigate("/viewAreas");
         } catch (error) {
             handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");

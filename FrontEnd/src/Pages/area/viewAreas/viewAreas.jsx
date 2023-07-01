@@ -12,18 +12,14 @@ import Dialog from "../../../Components/dialogComponent/dialog";
 import { useFetchAreas, deleteArea } from "../../../Services/api";
 
 export default function ViewAreas() {
-  
+
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
   
   const areas = useFetchAreas();
 
-  // const combinedData = areas.concat(employees);
-
   const navigate = useNavigate();
-
-  const { id_employee } = useParams();
 
   const handlePageChange = (value) => {
     
