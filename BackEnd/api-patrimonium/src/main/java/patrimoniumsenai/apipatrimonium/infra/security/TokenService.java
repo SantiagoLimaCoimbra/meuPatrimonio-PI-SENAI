@@ -23,8 +23,9 @@ public class TokenService {
             var algorithm = Algorithm.HMAC256("secret");
              return JWT.create()
                     .withIssuer("API Patrimonium")
+                     .withClaim("id", admin.getId())
                      .withSubject(admin.getCpf())
-                     .withClaim("password", admin.getPassword())
+                     .withClaim("password", admin.getPassword()) // tirar
                      .withExpiresAt(expirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
