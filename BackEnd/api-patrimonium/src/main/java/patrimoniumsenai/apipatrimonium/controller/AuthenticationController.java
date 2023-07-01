@@ -30,9 +30,11 @@ public class AuthenticationController {
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.cpf(), data.password());
         var authentication = manager.authenticate(authenticationToken);
 
-        var tokenJWT = tokenService.generateToken((Admin) authentication.getPrincipal());
+        var admin = (Admin) authentication.getPrincipal();
 
-        return ResponseEntity.ok(new DataTokenJWT_DTO(tokenJWT));
+        var tokenJWT = tokenService.generateToken(admin);
+
+        return ResponseEntity.ok(new DataTokenJWT_DTO(tokenJWT, admin.getId(), admin.getName(), admin.getEmail(), admin.getCpf()));
     }
 
 }
