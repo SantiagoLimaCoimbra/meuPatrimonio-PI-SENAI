@@ -73,7 +73,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         navigate("/login");
     }
-
     
     const signIn = async (name, email, cpf, password) => {
         try {
@@ -140,7 +139,16 @@ export const AuthProvider = ({ children }) => {
           throw new Error("Erro ao obter dados dos funcionários");
         }
       };
-      
+
+    const handleEditArea = async (name_area, description_area, employee) => {
+        try {
+            await updateCategory(name_area, description_area, employee);
+            // navigate("/viewAreas");
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    }
       
 
     const handleDeleteArea = async (id_area) => {
@@ -186,6 +194,7 @@ export const AuthProvider = ({ children }) => {
           signIn,
           handleDelete,
           newArea,
+          handleEditArea,
           handleDeleteArea,
           newCategory,
           handleEditCategory,

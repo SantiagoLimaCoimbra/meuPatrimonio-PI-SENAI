@@ -78,7 +78,7 @@ export default function Rotas() {
 
                <Route element={ <Private> <ViewAreas/> </Private>} path="/viewAreas"/>
                <Route element={ <Private> <NewArea/> </Private>} path="/newArea"/>
-               <Route element={ <Private> <EditArea/> </Private> }  path="/editArea" />
+               <Route element={ <Private> <EditArea/> </Private> }  path="/editArea/:id_area" />
 
             </Routes>
          </AuthProvider>

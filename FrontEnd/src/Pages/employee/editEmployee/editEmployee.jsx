@@ -23,8 +23,6 @@ export default function EditEmployee() {
     const [email, setEmail] = useState("");
     const [position, setPosition] = useState("");
 
-    console.log(id_employee, name_employee);
-
 
   const options = [
     { value: "Gerente", label: "Gerente" },
