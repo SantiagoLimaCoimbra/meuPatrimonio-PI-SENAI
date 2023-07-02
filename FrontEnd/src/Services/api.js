@@ -40,8 +40,7 @@ export const createUser = async (name, email, cpf, password) => {
     const response = await api.post("/admins", { name, email, cpf, password });
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
-    console.log(error.response.data); // Imprime a resposta de erro do servidor
+    console.log(error.response.data); 
     throw new Error("Erro ao criar usuário");
   }
 };
@@ -185,7 +184,6 @@ export const updateArea = async (
     });
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
     console.log(error.response.data);
     throw new Error("Erro ao editar área");
   }
@@ -345,15 +343,16 @@ export const deleteItem = async (account_code) => {
 };
 
 //AQUI QUE NAO TA DANDO
-export const createItem = async (name_asset, account_code, amount, registration_date, name_category, name_area) => {
+export const createItem = async (name_asset, account_code, amount, registration_date, category, area) => {
+
+  console.log("Cheguei no createItem com os seguintes dados:", name_asset, account_code, amount, registration_date, category, area);
 
   try {
+    console.log("Cheguei dentro do try de createItem");
     // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
-    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, name_category, name_area});
+    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: {id_category: category}, area: {id_area: area}});
     return response.data;
   } catch (error) {
-
-    //Fazer um modal de erro
     console.log(error.response.data); 
     throw new Error("Erro ao criar item");
   }
