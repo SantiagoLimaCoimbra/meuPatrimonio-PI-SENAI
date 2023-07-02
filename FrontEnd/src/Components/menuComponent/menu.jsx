@@ -4,20 +4,18 @@ import '../../css/styles.scss';
 import './menu.scss';
 import MenuIcon from '../../Assets/icons/menu-light-icon.svg';
 import MenuClose from '../../Assets/icons/close-icon.svg';
-import { Button, Menu, MenuItem } from "@mui/material";
-import UserIconMenu from '../../Assets/icons/user-menu-icon.svg';
 
 import { AuthContext } from "../../Contexts/auth";
 
 export default function () {
 
     const navRef = useRef();
-    const { logout } = useContext(AuthContext);
+    const { logout, user } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = useState(null);
 
-	const showNavbar = () => {
+	  const showNavbar = () => {
         navRef.current.classList.toggle("responsive_nav");
-	};
+	  };
 
     const handleLogout = () => {
         logout();
@@ -65,7 +63,7 @@ export default function () {
                 <MenuItem onClick={handleLogout}>Sair</MenuItem>
               </Menu> */}
             <div className="nav-item responsive">
-              <Link to="/perfil">Perfil</Link>
+              <Link to={`/viewUser`}>Perfil</Link>
             </div>
             <div className="nav-item responsive" onClick={handleLogout}>
               <Link to="/">Sair</Link>

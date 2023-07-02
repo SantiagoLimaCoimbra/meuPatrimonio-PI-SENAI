@@ -31,6 +31,9 @@ import EditArea from "./Pages/area/editArea/editArea";
 import Loading from "./Components/loadingComponent/loading";
 
 
+import ViewUser from "./Pages/user/viewUser/viewUser";
+
+
 export default function Rotas() {
 
 
@@ -56,6 +59,8 @@ export default function Rotas() {
             <Routes>
                <Route element={ <Login/> }  path="/login" exact />
                <Route element={ <SignIn/> }  path="/signin" />
+
+               <Route element={ <Private> <ViewUser/> </Private> } path="/viewUser"/>
 
                <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
                <Route element={ <Private> <NewItem/> </Private> }  path="/newItem" />

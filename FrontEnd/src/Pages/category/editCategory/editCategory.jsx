@@ -11,7 +11,6 @@ import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
 import { updateCategory } from "../../../Services/api";
-
 import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditCategory() {
@@ -19,6 +18,7 @@ export default function EditCategory() {
   const { id_category } = useParams();
   
   console.log("EditCategory:",id_category);
+
 
   const [name, setCategoryName] = useState("");
   const [type, setType] = useState("");

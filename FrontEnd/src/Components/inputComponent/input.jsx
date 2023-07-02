@@ -18,6 +18,7 @@ export default function(props) {
                 value={props.value}
                 required={props.required}
                 onChange={props.onChange} 
+                readOnly={props.readOnly}
             />
             <img src={props.img} />       
         </div>
