@@ -1,11 +1,18 @@
 import { React, useRef, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import '../../css/styles.scss';
 import './menu.scss';
 import MenuIcon from '../../Assets/icons/menu-light-icon.svg';
 import MenuClose from '../../Assets/icons/close-icon.svg';
 
 import { AuthContext } from "../../Contexts/auth";
+
+function NavButton({to, children}){
+  return(<NavLink to={to}
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "nav-button-active" : ""
+  }>{children}</NavLink>)
+}
 
 export default function () {
 
@@ -38,22 +45,22 @@ export default function () {
           </button>
           <div className="nav-items-left">
             <div className="nav-item">
-              <Link to="/">Bens</Link>
+              <NavButton to="/">Bens</NavButton>
             </div>
             <div className="nav-item">
-              <Link to="/viewCategories">Categorias</Link>
+              <NavButton to="/viewCategories">Categorias</NavButton>
             </div>
             <div className="nav-item">
-              <Link to="/viewEmployees">Funcionários</Link>
+              <NavButton to="/viewEmployees">Funcionários</NavButton>
             </div>
             <div className="nav-item">
-              <Link to="/viewAreas">Área</Link>
+              <NavButton to="/viewAreas">Área</NavButton>
             </div>
           </div>
   
           <div className="nav-items-right">
             <div className="nav-item">
-              <Link to="/">Histórico</Link>
+              <NavButton to="/">Histórico</NavButton>
             </div>
               {/* <Button className="nav-item no-responsive" onClick={handleMenuOpen}><img src={UserIconMenu}/></Button>
               <Menu className="dropdown no-responsive" id="dropdown-user" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
@@ -63,7 +70,7 @@ export default function () {
                 <MenuItem onClick={handleLogout}>Sair</MenuItem>
               </Menu> */}
             <div className="nav-item responsive">
-              <Link to={`/viewUser`}>Perfil</Link>
+              <NavButton to={`/viewUser`}>Perfil</NavButton>
             </div>
             <div className="nav-item responsive" onClick={handleLogout}>
               <Link to="/">Sair</Link>
