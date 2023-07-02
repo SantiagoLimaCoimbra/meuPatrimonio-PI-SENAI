@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
-import './editCategory.scss';
+import './editCategory.scss'; 
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { updateCategory } from "../../../Services/api";
+import { getCategory, updateCategory } from "../../../Services/api";
 import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditCategory() {
   const { handleEditCategory } = useContext(AuthContext);
   const { id_category } = useParams();
+  const navigate = useNavigate();
   
-  console.log("EditCategory:",id_category);
-
-
   const [name, setCategoryName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +33,8 @@ export default function EditCategory() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const category = await handleEditCategory(id_category);
+        // const category = await handleEditCategory(id_category);
+        const category = await getCategory(id_category);
         setCategoryName(category.name);
         setType(category.type);
         setDescription(category.description);
@@ -44,7 +44,11 @@ export default function EditCategory() {
     };
 
     fetchCategory();
-  }, []);
+  }, [id_category]);
+
+  const handleBack = () => {
+      navigate("/viewCategories");
+    };
 
 
   const handleOptionChange = (event) => {
@@ -57,7 +61,7 @@ export default function EditCategory() {
     try {
       await updateCategory(id_category, name, type, description);
       console.log("Categoria atualizada com sucesso!");
-      // Redirecionar para a página de visualização de categorias, ou exibir uma mensagem de sucesso
+      navigate("/viewCategories");
     } catch (error) {
       console.log(error);
       // Exibir um modal de erro ou tratar o erro de alguma outra forma
@@ -69,10 +73,9 @@ export default function EditCategory() {
     <div className="editCategoryPage">
       <Menu />
       <Background />
-      <div className="editCategory">
-        <form onSubmit={handleSubmit} className="editCategoryForm">
+        <form onSubmit={handleSubmit} className="editCategory">
           <h1>Editar categoria</h1>
-          <div className="inputsCategory">
+          <div className="inputsEditCategory">
             <div className="categoryRow1">
               <Input
                 id="name"
@@ -103,10 +106,10 @@ export default function EditCategory() {
             </div>
           </div>
           <div className="btnsEditCategory">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>
-      </div>
     </div>
   );
 }

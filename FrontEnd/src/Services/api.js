@@ -120,7 +120,6 @@ export const useFetchAreas = () => {
       }
     };
 
-    
     fetchData();
   }, []);
 
@@ -145,14 +144,15 @@ export const createArea = async (name_area, description_area, employee_id) => {
   }
 };
 
-export const updateArea = async (id_area, name_area, description_area, employee) => {
+export const updateArea = async (id_area, name_area, description_area, employee_id) => {
+  
+  const employee = {"id_employee": employee_id};
   try{
     const response = await api.put("/areas", {id_area, name_area, description_area, employee});
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
     console.log(error.response.data);
-    console.log(error);
     throw new Error("Erro ao editar área");
   }
 };
@@ -167,6 +167,17 @@ export const getArea = async (id_area) => {
     throw new Error("Erro ao retornar área");
   }
 };
+
+export const getAreaById = async (id_area) => {
+  try {
+    const response = await api.get(`/areas/${id_area}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Erro ao obter area');
+  }
+};
+
 
 export const deleteArea = async (id_area) => {
   try {
@@ -221,6 +232,16 @@ export const updateEmployee = async (id_employee, name_employee, cpf, email, pos
 export const getEmployee = async () => {
   try {
     const response = await api.get('/employees');
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Erro ao obter funcionários');
+  }
+};
+
+export const getEmployeeById = async (id_employee) => {
+  try {
+    const response = await api.get(`/employees/${id_employee}`);
     return response.data;
   } catch (error) {
     console.log(error);

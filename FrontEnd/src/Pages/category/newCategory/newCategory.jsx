@@ -48,9 +48,8 @@ export default function NewCategory() {
         <div className="newCategoryPage">
             <Menu />
             <Background />
-            <div className="newCategory">
                
-                <form onSubmit={handleSubmit} className="newCategoryForm">
+                <form onSubmit={handleSubmit} className="newCategory">
                 <h1>Cadastrar categoria</h1>
                     <div className="inputsCategory">
                         <div className="categoryRow1">
@@ -87,7 +86,6 @@ export default function NewCategory() {
                         <Btn type={"submit"} btnMessage={"Cadastrar"} />
                     </div>
                 </form>
-            </div>
         </div>
 
     );

@@ -64,8 +64,7 @@ export default function NewArea() {
     <div className="newAreaPage">
       <Menu />
       <Background />
-      <div className="newArea">
-        <form onSubmit={handleSubmit} className="newAreaForm">
+        <form onSubmit={handleSubmit} className="newArea">
           <h1>Cadastrar área</h1>
           <div className="inputsArea">
             <div className="areaRow1">
@@ -102,7 +101,6 @@ export default function NewArea() {
             <Btn type="submit" btnMessage="Cadastrar" />
           </div>
         </form>
-      </div>
     </div>
   );
 }

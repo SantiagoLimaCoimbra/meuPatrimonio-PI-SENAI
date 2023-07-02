@@ -16,6 +16,7 @@ export default function ViewCategories() {
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
   const categories = useFetchCategories();
   const navigate = useNavigate();
+  
 
 
   const handlePageChange = (value) => {
