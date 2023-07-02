@@ -57,7 +57,7 @@ export default function EditArea() {
   }, [id_area]);
 
   const handleBack = () => {
-    navigate("/viewArea");
+    navigate("/viewAreas");
   };
 
   const handleOptionChange = (event) => {

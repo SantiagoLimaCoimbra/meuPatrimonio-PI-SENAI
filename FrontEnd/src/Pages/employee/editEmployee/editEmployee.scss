@@ -35,13 +35,9 @@
             }
 
         .btnsEditEmployee{
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0 0 10px 0;
-            background-color: transparent;
+            gap: 10px;
         }
     }
 }
@@ -57,4 +53,19 @@
         }
     }
 
+}
+
+@media screen and (max-width: 400px) {
+    .editEmployeePage{
+        
+        .editEmployee{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+
+            .btnsEditEmployee {
+                flex-direction: column-reverse;
+            }
+        }
+    }
 }

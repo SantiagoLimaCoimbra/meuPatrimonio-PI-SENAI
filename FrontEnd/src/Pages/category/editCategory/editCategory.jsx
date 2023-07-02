@@ -5,6 +5,7 @@ import '../../../css/styles.scss';
 import './editCategory.scss'; 
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
@@ -44,6 +45,10 @@ export default function EditCategory() {
 
     fetchCategory();
   }, [id_category]);
+
+  const handleBack = () => {
+      navigate("/viewCategories");
+    };
 
 
   const handleOptionChange = (event) => {
@@ -101,6 +106,7 @@ export default function EditCategory() {
             </div>
           </div>
           <div className="btnsEditCategory">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>

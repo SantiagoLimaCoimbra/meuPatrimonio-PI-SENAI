@@ -5,6 +5,7 @@ import '../../../css/styles.scss';
 import './editEmployee.scss';
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
@@ -12,7 +13,6 @@ import DropdownInput from "../../../Components/dropdownInputComponent/dropdownIn
 
 import { getEmployeeById, updateEmployee } from "../../../Services/api";
 
-// import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditEmployee() {
     const { id_employee } = useParams();
@@ -45,6 +45,10 @@ export default function EditEmployee() {
 
     fetchEmployee();
   }, [id_employee]);
+
+  const handleBack = () => {
+      navigate("/viewEmployees");
+    };
 
 
   const handleOptionChange = (event) => {
@@ -108,6 +112,7 @@ export default function EditEmployee() {
             />
             </div>
           <div className="btnsEditEmployee">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>

@@ -52,10 +52,13 @@
             align-items: center;
             width: 500px;
         }
-        
+
     }
-
-
+    .btnsEditCategory{
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+    }   
 }
 
 @media screen and (max-width: 768px) {
@@ -77,4 +80,18 @@
         }
     }
 }
+
+@media screen and (max-width: 400px) {
+
+    .editCategoryPage{
+        
+        .editCategory{
+
+            .btnsEditCategory{
+                flex-direction: column-reverse;
+            }
+        }
+    }
+}
+
 
