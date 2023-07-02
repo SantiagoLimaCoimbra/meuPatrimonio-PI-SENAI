@@ -16,23 +16,23 @@ export default function ViewItems() {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
+  const navigate = useNavigate();
   
   const items = useFetchItems();
-  console.log(items)
+  console.log(items);
 
-  const navigate = useNavigate();
 
   const handlePageChange = (value) => {
     
   };
 
   const handleEditItem = (account_code) => {
-    navigate(`/editItems/${account_code}`);
+    navigate(`/editItem/${account_code}`);
   };
 
   useEffect(() => {
     if (isDeleted) {
-      window.location.reload(); // Recarrega a página após a exclusão
+      window.location.reload(); 
     }
   }, [isDeleted]);
 

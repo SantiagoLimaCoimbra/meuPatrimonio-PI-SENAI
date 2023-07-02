@@ -77,8 +77,6 @@ export default function NewItem() {
     
     try {
       await newItem(name_asset, account_code, amount, registration_date, category, area);
-    //   await newItem(area);
-    //   await newItem(category);
       console.log("chegou")
       navigate("/");
     } catch (error) {
@@ -122,6 +120,7 @@ export default function NewItem() {
               <Input
                 id="registration_date"
                 type="text"
+                mask={"2000"}
                 placeholder="Ano de registro"
                 value={registration_date}
                 required={true}
