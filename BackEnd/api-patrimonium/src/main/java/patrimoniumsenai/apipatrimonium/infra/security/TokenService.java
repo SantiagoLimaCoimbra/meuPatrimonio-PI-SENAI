@@ -3,6 +3,7 @@ package patrimoniumsenai.apipatrimonium.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import patrimoniumsenai.apipatrimonium.admin.Admin;
@@ -10,7 +11,6 @@ import patrimoniumsenai.apipatrimonium.admin.Admin;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @Service
 public class TokenService {
@@ -20,16 +20,28 @@ public class TokenService {
 
     public String generateToken(Admin admin){
         try {
-            var algorithm = Algorithm.HMAC256("secret");
+            var algorithm = Algorithm.HMAC256(secret);
              return JWT.create()
                     .withIssuer("API Patrimonium")
                      .withClaim("id", admin.getId())
                      .withSubject(admin.getCpf())
-                     .withClaim("password", admin.getPassword()) // tirar
                      .withExpiresAt(expirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
             throw new RuntimeException("Erro ao gerar o token JWT", exception);
+        }
+    }
+
+    public String getSubject(String tokenJWT){
+        try {
+            var algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("API Patrimonium")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+        } catch (JWTVerificationException exception){
+            throw new RuntimeException("Token JWT inválido ou expirado");
         }
     }
 
