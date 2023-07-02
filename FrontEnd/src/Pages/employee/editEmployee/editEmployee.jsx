@@ -68,13 +68,12 @@ export default function EditEmployee() {
 
 
   return (
-    <div className="newEmployeePage">
+    <div className="editEmployeePage">
       <Menu />
       <Background />
-      <div className="newEmployee">
-        <form onSubmit={handleSubmit} className="newEmployeeForm">
+        <form onSubmit={handleSubmit} className="editEmployee">
           <h1>Editar Funcionário</h1>
-          <div className="inputsEmployee">
+          <div className="inputsEditEmployee">
             <Input
                 id="name"
                 type={"text"}
@@ -110,11 +109,10 @@ export default function EditEmployee() {
                 onChange={handleOptionChange}
             />
             </div>
-          <div className="btnsNewEmployee">
+          <div className="btnsEditEmployee">
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>
-      </div>
     </div>
   );
 }

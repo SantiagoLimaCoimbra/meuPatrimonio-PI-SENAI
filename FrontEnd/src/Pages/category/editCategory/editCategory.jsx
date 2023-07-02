@@ -68,10 +68,9 @@ export default function EditCategory() {
     <div className="editCategoryPage">
       <Menu />
       <Background />
-      <div className="editCategory">
-        <form onSubmit={handleSubmit} className="editCategoryForm">
+        <form onSubmit={handleSubmit} className="editCategory">
           <h1>Editar categoria</h1>
-          <div className="inputsCategory">
+          <div className="inputsEditCategory">
             <div className="categoryRow1">
               <Input
                 id="name"
@@ -105,7 +104,6 @@ export default function EditCategory() {
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>
-      </div>
     </div>
   );
 }

@@ -1,29 +1,16 @@
 @import '../../../css/styles.scss';
 
-.background {
-    z-index: -1
-}
-
 .newEmployeePage {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
 
+    
     .newEmployee {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;      
-
-        h1 {
-            color: $dark-brown;
-            padding-bottom: 25px;
-        }
-    }
-
-    .newEmployeeForm {
-        height: fit-content;
         width: fit-content;
+        height: fit-content;
         display: flex;
         margin: auto;
         justify-content: center;
@@ -33,10 +20,15 @@
         border-radius: 30px;
         background-color: #f9f4e33d;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        backdrop-filter: blur(13.5px);
-        -webkit-backdrop-filter: blur(13.5px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
         color: $dark-brown;
+
+        h1 {
+            color: $dark-brown;
+            padding-bottom: 25px;
+        }
     }
 
     .inputsEmployee {
@@ -45,14 +37,42 @@
         justify-content: center;
         flex-direction: column;
         background-color: transparent;
-        width: 100%;
+        width: 400px;
         padding: 20px 0 20px 0;
     }
 
     .btnsNewEmployee {
         padding: 10px;
         display: flex;
-        gap: 20px;
+        gap: 10px;
     }
 
+}
+
+@media screen and (max-width: 768px) {
+
+    .newEmployeePage{
+        
+        .newEmployee{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .newEmployeePage{
+        
+        .newEmployee{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+
+            .btnsNewEmployee{
+                flex-direction: column-reverse;
+            }
+        }
+    }
 }
