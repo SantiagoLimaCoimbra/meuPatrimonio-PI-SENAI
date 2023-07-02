@@ -10,7 +10,7 @@ import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { getEmployee, updateEmployee } from "../../../Services/api";
+import { getEmployeeById, updateEmployee } from "../../../Services/api";
 
 // import { AuthContext } from "../../../Contexts/auth";
 
@@ -23,6 +23,9 @@ export default function EditEmployee() {
     const [email, setEmail] = useState("");
     const [position, setPosition] = useState("");
 
+    console.log(id_employee, name_employee);
+
+
   const options = [
     { value: "Gerente", label: "Gerente" },
     { value: "Efetivo", label: "Efetivo" },
@@ -32,7 +35,7 @@ export default function EditEmployee() {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const employee = await getEmployee(id_employee);
+        const employee = await getEmployeeById(id_employee);
         setEmployeeName(employee.name_employee);
         setCPF(employee.cpf);
         setEmail(employee.email);

@@ -228,6 +228,16 @@ export const getEmployee = async () => {
   }
 };
 
+export const getEmployeeById = async (id_employee) => {
+  try {
+    const response = await api.get(`/employees/${id_employee}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Erro ao obter funcionários');
+  }
+};
+
 export const deleteEmployee = async (id_employee) => {
   try {
     const response = await api.delete(`/employees/${id_employee}`);
