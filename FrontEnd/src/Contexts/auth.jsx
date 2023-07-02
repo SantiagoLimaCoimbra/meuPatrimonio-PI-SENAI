@@ -77,7 +77,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         navigate("/login");
     }
-
     
     const signIn = async (name, email, cpf, password) => {
         try {
@@ -145,7 +144,6 @@ export const AuthProvider = ({ children }) => {
         }
       };
 
-      //FUNCIONANDO
       const getAreaData = async () => {
         try {
           const area = await getArea();
@@ -187,7 +185,15 @@ export const AuthProvider = ({ children }) => {
         }
     }
       
-      
+    const handleEditArea = async (name_area, description_area, employee) => {
+        try {
+            await updateCategory(name_area, description_area, employee);
+            // navigate("/viewAreas");
+        } catch (error) {
+            //Fazer um modal de erro aparecer aqui
+            console.log(error);
+        }
+    }      
 
     const handleDeleteArea = async (id_area) => {
         try {
@@ -232,6 +238,7 @@ export const AuthProvider = ({ children }) => {
           signIn,
           handleDelete,
           newArea,
+          handleEditArea,
           handleDeleteArea,
           newCategory,
           handleEditCategory,

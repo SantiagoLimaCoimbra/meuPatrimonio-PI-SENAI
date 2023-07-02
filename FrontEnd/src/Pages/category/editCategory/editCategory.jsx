@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
-import './editCategory.scss';
+import './editCategory.scss'; 
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
@@ -44,6 +45,10 @@ export default function EditCategory() {
     fetchCategory();
   }, [id_category]);
 
+  const handleBack = () => {
+      navigate("/viewCategories");
+    };
+
 
   const handleOptionChange = (event) => {
     setType(event.target.value);
@@ -55,7 +60,7 @@ export default function EditCategory() {
     try {
       await updateCategory(id_category, name, type, description);
       console.log("Categoria atualizada com sucesso!");
-      navigate("/viewCategories")
+      navigate("/viewCategories");
     } catch (error) {
       console.log(error);
       // Exibir um modal de erro ou tratar o erro de alguma outra forma
@@ -67,10 +72,9 @@ export default function EditCategory() {
     <div className="editCategoryPage">
       <Menu />
       <Background />
-      <div className="editCategory">
-        <form onSubmit={handleSubmit} className="editCategoryForm">
-          <h1>Editar categoria</h1>
-          <div className="inputsCategory">
+        <form onSubmit={handleSubmit} className="editCategory">
+          <h1>Editar a categoria</h1>
+          <div className="inputsEditCategory">
             <div className="categoryRow1">
               <Input
                 id="name"
@@ -101,10 +105,10 @@ export default function EditCategory() {
             </div>
           </div>
           <div className="btnsEditCategory">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>
-      </div>
     </div>
   );
 }

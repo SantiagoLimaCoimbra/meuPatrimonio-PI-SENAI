@@ -25,7 +25,7 @@ export default function Login() {
 
         console.log("Submit", { cpfValue, password });
         console.log(user)
-        login(cpfValue, password); // integração com o contexto e com a api
+        login(cpfValue, password); 
     };
 
     return (

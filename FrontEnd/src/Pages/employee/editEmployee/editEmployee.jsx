@@ -5,14 +5,14 @@ import '../../../css/styles.scss';
 import './editEmployee.scss';
 
 import Btn from "../../../Components/brownBtnComponent/btn";
+import BtnRed from "../../../Components/btnRedComponent/btnRed";
 import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { getEmployee, updateEmployee } from "../../../Services/api";
+import { getEmployeeById, updateEmployee } from "../../../Services/api";
 
-// import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditEmployee() {
     const { id_employee } = useParams();
@@ -23,6 +23,7 @@ export default function EditEmployee() {
     const [email, setEmail] = useState("");
     const [position, setPosition] = useState("");
 
+
   const options = [
     { value: "Gerente", label: "Gerente" },
     { value: "Efetivo", label: "Efetivo" },
@@ -32,7 +33,7 @@ export default function EditEmployee() {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const employee = await getEmployee(id_employee);
+        const employee = await getEmployeeById(id_employee);
         setEmployeeName(employee.name_employee);
         setCPF(employee.cpf);
         setEmail(employee.email);
@@ -44,6 +45,10 @@ export default function EditEmployee() {
 
     fetchEmployee();
   }, [id_employee]);
+
+  const handleBack = () => {
+      navigate("/viewEmployees");
+    };
 
 
   const handleOptionChange = (event) => {
@@ -65,13 +70,12 @@ export default function EditEmployee() {
 
 
   return (
-    <div className="newEmployeePage">
+    <div className="editEmployeePage">
       <Menu />
       <Background />
-      <div className="newEmployee">
-        <form onSubmit={handleSubmit} className="newEmployeeForm">
-          <h1>Editar Funcionário</h1>
-          <div className="inputsEmployee">
+        <form onSubmit={handleSubmit} className="editEmployee">
+          <h1>Editar o funcionário</h1>
+          <div className="inputsEditEmployee">
             <Input
                 id="name"
                 type={"text"}
@@ -107,11 +111,11 @@ export default function EditEmployee() {
                 onChange={handleOptionChange}
             />
             </div>
-          <div className="btnsNewEmployee">
+          <div className="btnsEditEmployee">
+            <BtnRed btnMessage="Cancelar" onClick={handleBack} />
             <Btn type={"submit"} btnMessage={"Editar"} />
           </div>
         </form>
-      </div>
     </div>
   );
 }
