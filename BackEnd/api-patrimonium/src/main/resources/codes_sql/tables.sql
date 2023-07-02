@@ -50,3 +50,12 @@ create table Asset (
     foreign key(id_category) references Category(id_category),
     foreign key(id_area) references Area(id_area)
 );
+
+create table Audit (
+    id_audit int not null auto_increment,
+    entity varchar(45) not null,
+    operation varchar(45),
+    modified_at date,
+
+    primary key(id_audit)
+);

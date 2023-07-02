@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import patrimoniumsenai.apipatrimonium.audit.AuditListener;
 
 @Table(name = "Category")
 @Entity(name = "Category")
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_category")
+@EntityListeners(AuditListener.class)
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
