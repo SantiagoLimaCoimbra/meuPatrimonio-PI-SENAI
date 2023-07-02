@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import patrimoniumsenai.apipatrimonium.audit.AuditListener;
 import patrimoniumsenai.apipatrimonium.employee.Employee;
 
 
@@ -14,6 +15,7 @@ import patrimoniumsenai.apipatrimonium.employee.Employee;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_area")
+@EntityListeners(AuditListener.class)
 public class Area {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +26,6 @@ public class Area {
     @OneToOne
     @JoinColumn(name = "id_employee")
     private Employee employee;
-
-    /*
-    //mane to one
-    @OneToMany
-    @JoinColumn(name = "id_employee")
-    private List<Employee> employees;
-     */
 
     public Area(CreateAreaDTO data){
         this.name_area = data.name_area();

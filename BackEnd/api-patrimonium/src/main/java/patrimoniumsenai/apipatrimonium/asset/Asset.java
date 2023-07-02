@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import patrimoniumsenai.apipatrimonium.area.Area;
+import patrimoniumsenai.apipatrimonium.audit.AuditListener;
 import patrimoniumsenai.apipatrimonium.category.Category;
 
 @Table(name = "Asset")
@@ -14,6 +15,7 @@ import patrimoniumsenai.apipatrimonium.category.Category;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_asset")
+@EntityListeners(AuditListener.class)
 public class Asset {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

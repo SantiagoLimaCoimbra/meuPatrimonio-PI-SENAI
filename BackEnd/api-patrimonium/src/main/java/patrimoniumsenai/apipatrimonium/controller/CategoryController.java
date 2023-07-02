@@ -5,11 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import patrimoniumsenai.apipatrimonium.category.Category;
-import patrimoniumsenai.apipatrimonium.category.CategoryRepository;
-import patrimoniumsenai.apipatrimonium.category.CreateCategoryDTO;
-import patrimoniumsenai.apipatrimonium.category.ReadCategoryDTO;
-import patrimoniumsenai.apipatrimonium.category.UpdateCategoryDTO;
+import patrimoniumsenai.apipatrimonium.category.*;
+
 import java.util.List;
 
 @RestController

@@ -1,6 +1,5 @@
 package patrimoniumsenai.apipatrimonium.asset;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import patrimoniumsenai.apipatrimonium.area.Area;
 import patrimoniumsenai.apipatrimonium.category.Category;
