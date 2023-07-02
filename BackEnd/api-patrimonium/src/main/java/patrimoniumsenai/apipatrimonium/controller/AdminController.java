@@ -14,7 +14,7 @@ import patrimoniumsenai.apipatrimonium.admin.ReadAdminDTO;
 import java.util.List;
 
 @RestController
-@RequestMapping("admins")
+@RequestMapping("/admins")
 public class AdminController {
 
     @Autowired
@@ -31,16 +31,16 @@ public class AdminController {
     }
 
     //Excluir este metodo no quando for para producao
-    @GetMapping
-    public List<ReadAdminDTO> read(){
-        return repository.findAll().stream().map(ReadAdminDTO::new).toList();
-    }
-
-    //Excluir este metodo no quando for para producao
-    @GetMapping("/{id}")
-    public ResponseEntity<?> readId(@PathVariable Long id){
-        Admin admin = repository.findById(id).get();
-        return ResponseEntity.ok(admin);
-    }
+//    @GetMapping
+//    public List<ReadAdminDTO> read(){
+//        return repository.findAll().stream().map(ReadAdminDTO::new).toList();
+//    }
+//
+//    //Excluir este metodo no quando for para producao
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> readId(@PathVariable Long id){
+//        Admin admin = repository.findById(id).get();
+//        return ResponseEntity.ok(admin);
+//    }
 
 }
