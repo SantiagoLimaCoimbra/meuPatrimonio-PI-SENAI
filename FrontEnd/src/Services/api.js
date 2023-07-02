@@ -358,3 +358,21 @@ export const createItem = async (name_asset, account_code, amount, registration_
   }
 };
 
+export const useFetchAudits = () => {
+  const [audits, setAudits] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/audits");
+        setAudits(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return audits;
+};
+

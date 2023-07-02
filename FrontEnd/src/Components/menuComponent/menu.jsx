@@ -60,7 +60,7 @@ export default function () {
   
           <div className="nav-items-right">
             <div className="nav-item">
-              <NavButton to="/">Histórico</NavButton>
+              <NavButton to="/viewAudits">Histórico</NavButton>
             </div>
               {/* <Button className="nav-item no-responsive" onClick={handleMenuOpen}><img src={UserIconMenu}/></Button>
               <Menu className="dropdown no-responsive" id="dropdown-user" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>

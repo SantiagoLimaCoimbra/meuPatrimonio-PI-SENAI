@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-d
 import SignIn from "./Pages/signIn/signIn";
 import Login from "./Pages/login/login";
 import Dashboard from "./Pages/dashboard/dashboard";
+import ViewAudits from "./Pages/audit/viewAudit";
 
 import { AuthProvider, AuthContext } from "./Contexts/auth";
 
@@ -66,6 +67,7 @@ export default function Rotas() {
                <Route element={ <Private> <EditItem/> </Private> }  path="/editItem" />
 
                <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
+               <Route element={ <Private> <ViewAudits/> </Private>}  path="/viewAudits"/>
 
                <Route element={ <Private> <ViewCategories/> </Private>} path="/viewCategories" />
                <Route element={ <Private> <NewCategory/> </Private>} path="/newCategory"/>
