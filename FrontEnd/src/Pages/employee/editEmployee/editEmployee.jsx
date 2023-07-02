@@ -57,9 +57,12 @@ export default function EditEmployee() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    
+    const cpfValue = cpf.replace(/\D/g, "");
 
     try {
-      await updateEmployee(id_employee, name_employee, cpf, email, position);
+      await updateEmployee(id_employee, name_employee, cpfValue, email, position);
       console.log("Funcionário atualizado com sucesso!");
       navigate("/viewEmployees")
     } catch (error) {

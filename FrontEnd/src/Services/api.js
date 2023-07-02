@@ -1,8 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const getToken = () => {
+  const token = localStorage.getItem("token");
+
+  return Boolean(token) ? `Bearer ${token}` : undefined;
+};
+
 export const api = axios.create({
   baseURL: "http://localhost:8080",
+  headers: {
+    Authorization: getToken(),
+  },
 });
 
 export const createSession = async (cpf, password) => {
@@ -16,7 +25,7 @@ export const createSession = async (cpf, password) => {
 };
 
 export const getUser = async (id) => {
-  try{
+  try {
     const response = await api.get(`/admins/${id}`);
     return response.data;
   } catch (error) {
@@ -31,13 +40,10 @@ export const createUser = async (name, email, cpf, password) => {
     const response = await api.post("/admins", { name, email, cpf, password });
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
-    console.log(error.response.data); // Imprime a resposta de erro do servidor
+    console.log(error.response.data); 
     throw new Error("Erro ao criar usuário");
   }
 };
-
-
 
 export const useFetchCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -70,8 +76,13 @@ export const createCategory = async (name, type, description) => {
 };
 
 export const updateCategory = async (id_category, name, type, description) => {
-  try{
-    const response = await api.put("/categories", {id_category, name, type, description });
+  try {
+    const response = await api.put("/categories", {
+      id_category,
+      name,
+      type,
+      description,
+    });
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
@@ -121,10 +132,12 @@ export const useFetchAreas = () => {
     const fetchData = async () => {
       try {
         const response = await api.get("/areas");
-        setAreas(response.data.map(({ employee, ...rest }) => ({
-          ...rest,
-          name_employee: employee.name_employee,
-        })));
+        setAreas(
+          response.data.map(({ employee, ...rest }) => ({
+            ...rest,
+            name_employee: employee.name_employee,
+          }))
+        );
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -134,35 +147,43 @@ export const useFetchAreas = () => {
     fetchData();
   }, []);
 
-
-  return (areas);
+  return areas;
 };
 
-
-
 export const createArea = async (name_area, description_area, employee_id) => {
-
-  const employee = {"id_employee": employee_id};
+  const employee = { id_employee: employee_id };
 
   try {
-    const response = await api.post("/areas", { name_area, description_area, employee});
+    const response = await api.post("/areas", {
+      name_area,
+      description_area,
+      employee,
+    });
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
     console.log("employee:", employee);
-    console.log(error.response.data); 
+    console.log(error.response.data);
     throw new Error("Erro ao criar area");
   }
 };
 
-export const updateArea = async (id_area, name_area, description_area, employee_id) => {
-  
-  const employee = {"id_employee": employee_id};
-  try{
-    const response = await api.put("/areas", {id_area, name_area, description_area, employee});
+export const updateArea = async (
+  id_area,
+  name_area,
+  description_area,
+  employee_id
+) => {
+  const employee = { id_employee: employee_id };
+  try {
+    const response = await api.put("/areas", {
+      id_area,
+      name_area,
+      description_area,
+      employee,
+    });
     return response.data;
   } catch (error) {
-    //Fazer um modal de erro
     console.log(error.response.data);
     throw new Error("Erro ao editar área");
   }
@@ -171,6 +192,7 @@ export const updateArea = async (id_area, name_area, description_area, employee_
 export const getArea = async () => {
   try{
     const response = await api.get(`/areas`);
+
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
@@ -185,10 +207,9 @@ export const getAreaById = async (id_area) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    throw new Error('Erro ao obter area');
+    throw new Error("Erro ao obter area");
   }
 };
-
 
 export const deleteArea = async (id_area) => {
   try {
@@ -222,7 +243,12 @@ export const useFetchEmployees = () => {
 
 export const createEmployee = async (name_employee, cpf, email, position) => {
   try {
-    const response = await api.post("/employees", { name_employee, cpf, email, position });
+    const response = await api.post("/employees", {
+      name_employee,
+      cpf,
+      email,
+      position,
+    });
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
@@ -231,9 +257,21 @@ export const createEmployee = async (name_employee, cpf, email, position) => {
   }
 };
 
-export const updateEmployee = async (id_employee, name_employee, cpf, email, position) => {
-  try{
-    const response = await api.put("/employees", { id_employee, name_employee, cpf, email, position });
+export const updateEmployee = async (
+  id_employee,
+  name_employee,
+  cpf,
+  email,
+  position
+) => {
+  try {
+    const response = await api.put("/employees", {
+      id_employee,
+      name_employee,
+      cpf,
+      email,
+      position,
+    });
     return response.data;
   } catch (error) {
     console.log(error.response.data);
@@ -243,11 +281,11 @@ export const updateEmployee = async (id_employee, name_employee, cpf, email, pos
 
 export const getEmployee = async () => {
   try {
-    const response = await api.get('/employees');
+    const response = await api.get("/employees");
     return response.data;
   } catch (error) {
     console.log(error);
-    throw new Error('Erro ao obter funcionários');
+    throw new Error("Erro ao obter funcionários");
   }
 };
 
@@ -257,7 +295,7 @@ export const getEmployeeById = async (id_employee) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    throw new Error('Erro ao obter funcionários');
+    throw new Error("Erro ao obter funcionários");
   }
 };
 
@@ -305,16 +343,18 @@ export const deleteItem = async (account_code) => {
 };
 
 //AQUI QUE NAO TA DANDO
-export const createItem = async (name_asset, account_code, amount, registration_date, name_category, name_area) => {
+export const createItem = async (name_asset, account_code, amount, registration_date, category, area) => {
+
+  console.log("Cheguei no createItem com os seguintes dados:", name_asset, account_code, amount, registration_date, category, area);
 
   try {
+    console.log("Cheguei dentro do try de createItem");
     // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
-    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, name_category, name_area});
+    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: {id_category: category}, area: {id_area: area}});
     return response.data;
   } catch (error) {
-
-    //Fazer um modal de erro
     console.log(error.response.data); 
     throw new Error("Erro ao criar item");
   }
 };
+

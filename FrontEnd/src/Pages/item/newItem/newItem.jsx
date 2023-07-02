@@ -17,8 +17,8 @@ export default function NewItem() {
   const { newItem, getAreaData, getCategoryData } = useContext(AuthContext);
   const [name_asset, setAssetName] = useState("");
   const [account_code, setAssetCode] = useState("");
-  const [amount, setAmount] = useState([]);
-  const [registration_date, setDate] = useState([]);
+  const [amount, setAmount] = useState("");
+  const [registration_date, setDate] = useState("");
   
   const [area, setArea] = useState([]);
   const [areaData, setAreaData] = useState([]);
@@ -35,7 +35,7 @@ export default function NewItem() {
         setAreaData(data.map((area) => ({ value: area.id_area, label: area.name_area })));
         console.log("areaData:", areaData);
       } catch (error) {
-        console.log(error); // erro ao obter dados de area
+        console.log(error); 
       }
     };
   
@@ -75,11 +75,10 @@ export default function NewItem() {
     e.preventDefault();
 
     
+    const account_codeValue = account_code.replace(/\D/g, "");
+
     try {
-      await newItem(name_asset, account_code, amount, registration_date, category, area);
-    //   await newItem(area);
-    //   await newItem(category);
-      console.log("chegou")
+      await newItem(name_asset, account_codeValue, amount, registration_date, category, area);
       navigate("/");
     } catch (error) {
       console.log(error);
