@@ -15,6 +15,10 @@ import {
     createArea,
     deleteArea,
     getEmployee,
+    getCategory,
+    getArea,
+    createItem,
+    getAreaById
   } from '../Services/api';
   
 
@@ -100,7 +104,7 @@ export const AuthProvider = ({ children }) => {
     const handleEditCategory = async (id_category, name, type, description) => {
         try {
             await updateCategory(id_category, name, type, description);
-            navigate("/editCategory");
+            navigate(`/editCategory/${id_category}`);
         } catch (error) {
             //Fazer um modal de erro aparecer aqui
             console.log(error);
@@ -140,6 +144,48 @@ export const AuthProvider = ({ children }) => {
           throw new Error("Erro ao obter dados dos funcionários");
         }
       };
+
+      //FUNCIONANDO
+      const getAreaData = async () => {
+        try {
+          const area = await getArea();
+          const areaData = area.map(({ id_area, name_area }) => ({
+            id_area,
+            name_area,
+          }));
+          return areaData;
+        } catch (error) {
+          console.log(error);
+          throw new Error("Erro ao obter dados das áreas");
+        }
+      };
+
+      const getCategoryData = async () => {
+        try {
+          const category = await getCategory();
+          const categoryData = category.map(({ id_category, name }) => ({
+            id_category,
+            name,
+          }));
+          return categoryData;
+        } catch (error) {
+          console.log(error);
+          throw new Error("Erro ao obter dados das categorias");
+        }
+      };
+
+      const newItem = async (name_asset, account_code, amount, registration_date, category, area) => {
+                
+        try {
+            await createItem(name_asset, account_code, amount, registration_date, category, area);
+            console.log("cheguei")
+
+            // navigate("/");
+        } catch (error) {
+            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
+            console.log(error);
+        }
+    }
       
       
 
@@ -192,6 +238,10 @@ export const AuthProvider = ({ children }) => {
           newEmployee,
           handleDeleteEmployee,
           getEmployeeData,
+          getAreaData,
+          getCategoryData,
+          newItem,
+          
         }}
       >
             {children}

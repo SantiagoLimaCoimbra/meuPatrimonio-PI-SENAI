@@ -45,43 +45,41 @@ export default function Rotas() {
          return <Loading />
       }
 
-      if (!user){
-         return <Navigate to="/login "/>;
+      if (!user) {
+         return <Navigate to="/login " />;
       }
 
       return children;
 
-   }  
-   
-   return(
-       <Router>
-       <AuthProvider>
+   }
+
+   return (
+      <Router>
+         <AuthProvider>
             <Routes>
-               <Route element={ <Login/> }  path="/login" exact />
-               <Route element={ <SignIn/> }  path="/signin" />
+               <Route element={<Login />} path="/login" exact />
+               <Route element={<SignIn />} path="/signin" />
 
-               <Route element={ <Private> <ViewUser/> </Private> } path="/viewUser"/>
+               <Route element={<Private> <ViewUser /> </Private>} path="/viewUser" />
+               <Route element={<Private> <ViewItems /> </Private>} path="/" />
+               <Route element={<Private> <NewItem /> </Private>} path="/newItem" />
+               <Route element={<Private> <EditItem /> </Private>} path="/editItem" />
 
-               <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
-               <Route element={ <Private> <NewItem/> </Private> }  path="/newItem" />
-               <Route element={ <Private> <EditItem/> </Private> }  path="/editItem" />
+               <Route element={<Private> <Dashboard /> </Private>} path="/dashboard" />
 
-               <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
+               <Route element={<Private> <ViewCategories /> </Private>} path="/viewCategories" />
+               <Route element={<Private> <NewCategory /> </Private>} path="/newCategory" />
+               <Route element={<Private> <EditCategory /> </Private>} path="/editCategory/:id_category" />
 
-               <Route element={ <Private> <ViewCategories/> </Private>} path="/viewCategories" />
-               <Route element={ <Private> <NewCategory/> </Private>} path="/newCategory"/>
-               <Route element={ <Private> <EditCategory/> </Private>} path="/editCategory/:id_category"/>
-
-               <Route element={ <Private> <ViewEmployees/> </Private>} path="/viewEmployees"/>
-               <Route element={ <Private> <NewEmployee/> </Private>} path="/newEmployee"/>
-               <Route element={ <Private> <EditEmployee/> </Private> }  path="/editEmployee/:id_employee" />
-
-               <Route element={ <Private> <ViewAreas/> </Private>} path="/viewAreas"/>
-               <Route element={ <Private> <NewArea/> </Private>} path="/newArea"/>
-               <Route element={ <Private> <EditArea/> </Private> }  path="/editArea" />
-
+               <Route element={<Private> <ViewEmployees /> </Private>} path="/viewEmployees" />
+               <Route element={<Private> <NewEmployee /> </Private>} path="/newEmployee" />
+               <Route element={<Private> <EditEmployee /> </Private>} path="/editEmployee/:id_employee" />
+               
+               <Route element={<Private> <ViewAreas /> </Private>} path="/viewAreas" />
+               <Route element={<Private> <NewArea /> </Private>} path="/newArea" />
+               <Route element={<Private> <EditArea /> </Private>} path="/editArea" />
             </Routes>
          </AuthProvider>
-       </Router>
+      </Router>
    )
 }
