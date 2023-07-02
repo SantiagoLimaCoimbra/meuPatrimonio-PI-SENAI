@@ -47,7 +47,7 @@ export default function () {
               <Link to="/viewEmployees">Funcionários</Link>
             </div>
             <div className="nav-item">
-              <Link to="/">Área</Link>
+              <Link to="/viewAreas">Área</Link>
             </div>
           </div>
   
