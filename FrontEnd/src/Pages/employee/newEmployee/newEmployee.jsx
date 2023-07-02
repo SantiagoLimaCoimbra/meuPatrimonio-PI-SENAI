@@ -40,7 +40,6 @@ export default function NewEmployee() {
     e.preventDefault();
     const cpfValue = cpf.replace(/\D/g, "");
 
-    console.log("Submit", { name_employee, cpfValue, email, position });
     newEmployee(name_employee, cpfValue, email, position);
   };
 
@@ -49,7 +48,7 @@ export default function NewEmployee() {
       <Menu />
       <Background />
       <form onSubmit={handleSubmit} className="newEmployee">
-        <h1>Cadastrar funcionário</h1>
+        <h1>Cadastrar novo funcionário</h1>
         <div className="inputsEmployee">
           <Input
             id="name"

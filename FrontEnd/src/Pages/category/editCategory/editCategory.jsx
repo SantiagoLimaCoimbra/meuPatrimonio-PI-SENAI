@@ -74,7 +74,7 @@ export default function EditCategory() {
       <Menu />
       <Background />
         <form onSubmit={handleSubmit} className="editCategory">
-          <h1>Editar categoria</h1>
+          <h1>Editar a categoria</h1>
           <div className="inputsEditCategory">
             <div className="categoryRow1">
               <Input
