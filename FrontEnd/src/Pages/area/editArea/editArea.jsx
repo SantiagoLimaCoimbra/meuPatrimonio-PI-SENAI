@@ -82,7 +82,7 @@ export default function EditArea() {
       <Menu />
       <Background />
         <form onSubmit={handleSubmit} className="editArea">
-          <h1>Editar area</h1>
+          <h1>Editar a área</h1>
           <div className="inputsEditArea">
             <div className="areaRow1">
               <Input

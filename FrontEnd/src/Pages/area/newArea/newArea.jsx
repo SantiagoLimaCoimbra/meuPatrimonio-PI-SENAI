@@ -47,13 +47,12 @@ export default function NewArea() {
       setEmployee(event);
     };
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
     
-    try {
-      await newArea(name_area, description_area, employee);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      try {
+      await newArea(name_area, description_area === "" ? "Não possui descrição" : description_area, employee);
       navigate("/viewAreas");
     } catch (error) {
       console.log(error);
@@ -65,7 +64,7 @@ export default function NewArea() {
       <Menu />
       <Background />
         <form onSubmit={handleSubmit} className="newArea">
-          <h1>Cadastrar área</h1>
+          <h1>Cadastrar nova área</h1>
           <div className="inputsArea">
             <div className="areaRow1">
               <Input

@@ -39,9 +39,7 @@ export default function NewCategory() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log("Submit", {name, type, description } );
-        newCategory(name, type, description);
+        newCategory(name, type, description === "" ? "Não possui descrição" : description);
     }
     
     return (
@@ -50,7 +48,7 @@ export default function NewCategory() {
             <Background />
                
                 <form onSubmit={handleSubmit} className="newCategory">
-                <h1>Cadastrar categoria</h1>
+                <h1>Cadastrar nova categoria</h1>
                     <div className="inputsCategory">
                         <div className="categoryRow1">
                             <Input

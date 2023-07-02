@@ -74,7 +74,7 @@ export default function EditEmployee() {
       <Menu />
       <Background />
         <form onSubmit={handleSubmit} className="editEmployee">
-          <h1>Editar Funcionário</h1>
+          <h1>Editar o funcionário</h1>
           <div className="inputsEditEmployee">
             <Input
                 id="name"
