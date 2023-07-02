@@ -40,7 +40,7 @@ create table Area (
 create table Asset (
     id_asset int not null auto_increment,
     name_asset varchar(45) not null,
-    account_code varchar(9),
+    account_code varchar(10),
     amount int not null,
     registration_date varchar(45),
 	id_category int not null,
@@ -55,6 +55,7 @@ create table Audit (
     id_audit int not null auto_increment,
     entity varchar(45) not null,
     operation varchar(45),
+    modified_by varchar(60) not null,
     modified_at date,
 
     primary key(id_audit)
