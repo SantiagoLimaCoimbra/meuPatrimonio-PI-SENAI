@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import patrimoniumsenai.apipatrimonium.audit.AuditListener;
 
 @Table(name = "Employee")
 @Entity(name = "Employee")
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_employee")
+@EntityListeners(AuditListener.class)
 public class Employee {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

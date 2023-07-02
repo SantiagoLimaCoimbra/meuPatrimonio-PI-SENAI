@@ -12,6 +12,9 @@ public record AuditDTO(
         String operation,
 
         @NotBlank
+        String modifiedBy,
+
+        @NotBlank
         LocalDateTime modifiedAt
 
 ) {
