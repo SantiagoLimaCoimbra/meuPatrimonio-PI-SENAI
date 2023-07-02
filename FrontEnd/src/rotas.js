@@ -45,12 +45,11 @@ export default function Rotas() {
          return <Loading />
       }
 
-      if (!user){
-         return <Navigate to="/login "/>;
+      if (!user) {
+         return <Navigate to="/login " />;
       }
 
       return children;
-
    }  
    
    return(
@@ -79,9 +78,8 @@ export default function Rotas() {
                <Route element={ <Private> <ViewAreas/> </Private>} path="/viewAreas"/>
                <Route element={ <Private> <NewArea/> </Private>} path="/newArea"/>
                <Route element={ <Private> <EditArea/> </Private> }  path="/editArea/:id_area" />
-
             </Routes>
          </AuthProvider>
-       </Router>
+      </Router>
    )
 }

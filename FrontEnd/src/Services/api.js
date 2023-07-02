@@ -80,7 +80,18 @@ export const updateCategory = async (id_category, name, type, description) => {
   }
 };
 
-export const getCategory = async (id_category) => {
+export const getCategory = async () => {
+  try{
+    const response = await api.get("/categories");
+    return response.data;
+  } catch (error) {
+    //Fazer um modal de erro
+    console.log(error.response.data);
+    throw new Error("Erro ao retornar categoria");
+  }
+};
+
+export const getCategoryById = async (id_category) => {
   try{
     const response = await api.get(`/categories/${id_category}`);
     return response.data;
@@ -157,14 +168,14 @@ export const updateArea = async (id_area, name_area, description_area, employee_
   }
 };
 
-export const getArea = async (id_area) => {
+export const getArea = async () => {
   try{
-    const response = await api.get(`/areas/${id_area}`);
+    const response = await api.get(`/areas`);
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
     console.log(error.response.data);
-    throw new Error("Erro ao retornar área");
+    throw new Error("Erro ao retornar dados área");
   }
 };
 
@@ -190,7 +201,7 @@ export const deleteArea = async (id_area) => {
 };
 
 export const useFetchEmployees = () => {
-  const [employess, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -201,12 +212,13 @@ export const useFetchEmployees = () => {
         console.log(error);
       }
     };
-
     fetchData();
   }, []);
 
-  return employess;
+  return employees;
 };
+
+
 
 export const createEmployee = async (name_employee, cpf, email, position) => {
   try {
@@ -256,5 +268,53 @@ export const deleteEmployee = async (id_employee) => {
   } catch (error) {
     console.log(error);
     throw new Error("Erro ao excluir o funcionário");
+  }
+};
+
+export const useFetchItems = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/assets");
+        setItems(response.data.map( ({ area, category, ...rest }) => ({
+          ...rest,
+          name_area: area.name_area,
+          name_category: category.name
+        }))
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return items;
+};
+
+export const deleteItem = async (account_code) => {
+  try {
+    const response = await api.delete(`/assets/${account_code}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao excluir item");
+  }
+};
+
+//AQUI QUE NAO TA DANDO
+export const createItem = async (name_asset, account_code, amount, registration_date, name_category, name_area) => {
+
+  try {
+    // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
+    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, name_category, name_area});
+    return response.data;
+  } catch (error) {
+
+    //Fazer um modal de erro
+    console.log(error.response.data); 
+    throw new Error("Erro ao criar item");
   }
 };

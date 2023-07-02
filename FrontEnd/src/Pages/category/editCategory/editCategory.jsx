@@ -11,7 +11,7 @@ import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { getCategory, updateCategory } from "../../../Services/api";
+import { getCategoryById, updateCategory } from "../../../Services/api";
 import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditCategory() {
@@ -33,8 +33,7 @@ export default function EditCategory() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        // const category = await handleEditCategory(id_category);
-        const category = await getCategory(id_category);
+        const category = await getCategoryById(id_category);
         setCategoryName(category.name);
         setType(category.type);
         setDescription(category.description);
