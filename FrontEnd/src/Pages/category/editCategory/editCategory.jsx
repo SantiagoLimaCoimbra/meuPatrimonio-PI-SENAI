@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import '../../../css/App.css';
 import '../../../css/styles.scss';
 import './editCategory.scss';
@@ -10,13 +10,15 @@ import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
 
-import { getCategory, updateCategory } from "../../../Services/api";
+import { updateCategory } from "../../../Services/api";
 
-// import { AuthContext } from "../../../Contexts/auth";
+import { AuthContext } from "../../../Contexts/auth";
 
 export default function EditCategory() {
-    const { id_category } = useParams();
-    const navigate = useNavigate();
+  const { handleEditCategory } = useContext(AuthContext);
+  const { id_category } = useParams();
+  
+  console.log("EditCategory:",id_category);
 
   const [name, setCategoryName] = useState("");
   const [type, setType] = useState("");
@@ -24,15 +26,15 @@ export default function EditCategory() {
 
   const options = [
     { value: "Tangivel", label: "Tangível" },
-    { value: "Intangivel", label: "Intangivel" },
+    { value: "Intangivel", label: "Intangível" },
     { value: "Movel", label: "Móvel" },
-    { value: "Imovel", label: "Imóvel"}
+    { value: "Imovel", label: "Imóvel" }
   ];
 
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const category = await getCategory(id_category);
+        const category = await handleEditCategory(id_category);
         setCategoryName(category.name);
         setType(category.type);
         setDescription(category.description);
@@ -42,7 +44,7 @@ export default function EditCategory() {
     };
 
     fetchCategory();
-  }, [id_category]);
+  }, []);
 
 
   const handleOptionChange = (event) => {
@@ -55,7 +57,7 @@ export default function EditCategory() {
     try {
       await updateCategory(id_category, name, type, description);
       console.log("Categoria atualizada com sucesso!");
-      navigate("/viewCategories")
+      // Redirecionar para a página de visualização de categorias, ou exibir uma mensagem de sucesso
     } catch (error) {
       console.log(error);
       // Exibir um modal de erro ou tratar o erro de alguma outra forma
