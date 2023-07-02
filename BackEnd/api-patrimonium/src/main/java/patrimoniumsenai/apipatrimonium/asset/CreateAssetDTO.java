@@ -10,7 +10,7 @@ public record CreateAssetDTO(
         @NotBlank
         String name_asset,
         @NotBlank
-        @Pattern(regexp = "\\d{9}")
+        @Pattern(regexp = "\\d{10}")
         String account_code,
         @NotNull
         int amount,
