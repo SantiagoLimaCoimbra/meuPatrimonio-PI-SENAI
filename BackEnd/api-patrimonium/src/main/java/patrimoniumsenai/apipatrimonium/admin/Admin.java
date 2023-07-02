@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Admin implements UserDetails {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
@@ -30,11 +30,11 @@ public class Admin implements UserDetails {
 
     //private Boolean ativo;
 
-    public Admin(CreateAdminDTO data) {
+    public Admin(CreateAdminDTO data, PasswordEncoder encoder) {
         this.name = data.name();
         this.email = data.email();
         this.cpf = data.cpf();
-        this.password = data.password();
+        this.password = encoder.encode(data.password());
     }
 
     @Override

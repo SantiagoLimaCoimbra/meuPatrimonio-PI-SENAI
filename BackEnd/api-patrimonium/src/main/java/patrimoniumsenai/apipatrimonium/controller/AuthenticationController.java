@@ -2,10 +2,11 @@ package patrimoniumsenai.apipatrimonium.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +26,11 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private PasswordEncoder encoder;
+
     @PostMapping
-    public ResponseEntity execultLogin(@RequestBody @Valid DataAuthenticationDTO data){
+    public ResponseEntity handleLogin(@RequestBody @Valid DataAuthenticationDTO data){
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.cpf(), data.password());
         var authentication = manager.authenticate(authenticationToken);
 
