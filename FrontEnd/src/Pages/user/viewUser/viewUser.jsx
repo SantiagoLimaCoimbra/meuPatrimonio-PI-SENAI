@@ -4,8 +4,13 @@ import '../../../css/App.css';
 import '../../../css/styles.scss';
 import './viewUser.scss';
 
+import { ReactComponent as IconLock } from '../../../Assets/icons/lock-icon.svg';
+
 import Menu from '../../../Components/menuComponent/menu';
 import Input from "../../../Components/inputComponent/input";
+import Background from '../../../Components/backgroundComponent/background'
+
+
 import { AuthContext } from "../../../Contexts/auth";
 
 export default function ViewUser() {
@@ -14,11 +19,21 @@ export default function ViewUser() {
 
     return (
         <div className="viewUserPage">
+            <Background />
             <Menu />
             <div className="viewUser">
-            <form className="viewUserForm">
-                <h1>Perfil</h1>
-                <div className="inputsUser">
+
+                <form className="viewUserForm">
+                    <div className="title">
+                        <div className="icon">
+                            <IconLock />
+                        </div>
+                        </div>
+                        <h1>Seus dados</h1>
+                    
+                    <div className="inputsUser">
+
+                        <label>Nome</label>
                         <Input
                             id="name"
                             type={"text"}
@@ -26,6 +41,8 @@ export default function ViewUser() {
                             value={user.name}
                             readOnly={true}
                         />
+
+                        <label>E-mail</label>
                         <Input
                             id="email"
                             type={"text"}
@@ -33,15 +50,22 @@ export default function ViewUser() {
                             value={user.email}
                             readOnly={true}
                         />
+                        <label>CPF</label>
                         <Input
                             id="cpf"
+                            mask="000.000.000-00"
                             type={"text"}
                             placeholder={"CPF"}
                             value={user.cpf}
                             readOnly={true}
                         />
+                    </div>
+
+                </form>
+
+                <div className="logContainer">
+
                 </div>
-            </form>
             </div>
         </div>
 
