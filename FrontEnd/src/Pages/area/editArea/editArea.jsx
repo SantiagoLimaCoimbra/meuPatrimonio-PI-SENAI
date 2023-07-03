@@ -9,21 +9,41 @@ import Input from "../../../Components/inputComponent/input";
 import Background from '../../../Components/backgroundComponent/background'
 import Menu from '../../../Components/menuComponent/menu';
 import DropdownInput from "../../../Components/dropdownInputComponent/dropdownInput";
-import { useNavigate } from "react-router-dom";
 import BtnRed from "../../../Components/btnRedComponent/btnRed";
+
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/auth";
 
 import { updateArea, getAreaById } from "../../../Services/api";
 
-import { AuthContext } from "../../../Contexts/auth";
-
 export default function EditArea() {
   const { getEmployeeData } = useContext(AuthContext);
+
   const { id_area } = useParams();
   const [name_area, setNameArea] = useState("");
   const [description_area, setDescription] = useState("");
   const [employee, setEmployee] = useState([]);
   const [employeeData, setEmployeeData] = useState([]);
+
   const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const fetchArea = async () => {
+      try {
+        const area = await getAreaById(id_area);
+        console.log(area)
+        setNameArea(area.name_area);
+        setDescription(area.description_area);
+        
+        setEmployee(area.employee.id_employee);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchArea();
+  }, [id_area]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,23 +58,6 @@ export default function EditArea() {
 
     fetchData();
   }, []);
-
-  
-  useEffect(() => {
-    const fetchArea = async () => {
-      try {
-        const area = await getAreaById(id_area);
-        console.log(area)
-        setNameArea(area.name_area);
-        setDescription(area.description_area);
-        setEmployee(area.employee.id_employee);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchArea();
-  }, [id_area]);
 
   const handleBack = () => {
     navigate("/viewAreas");

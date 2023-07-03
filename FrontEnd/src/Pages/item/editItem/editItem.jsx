@@ -31,8 +31,6 @@ export default function EditItem() {
   const [category, setCategory] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
 
-  
-
   const navigate = useNavigate();
 
    
@@ -100,12 +98,13 @@ export default function EditItem() {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     
     const account_codeValue = account_code.replace(/\D/g, "");
 
     try {
-      await updateItem(name_asset, account_codeValue, amount, registration_date, category, area);
+      await updateItem(id_asset,name_asset, account_codeValue, amount, registration_date, category, area);
       navigate("/");
       console.log("Bem atualizado com sucesso!");
     } catch (error) {
@@ -119,7 +118,7 @@ export default function EditItem() {
       <Background />
       <div className="newArea">
         <form onSubmit={handleSubmit} className="newAreaForm">
-          <h1>Cadastrar bem</h1>
+          <h1>Editar bem</h1>
           <div className="inputsArea">
             <Input
               id="name_asset"
@@ -161,7 +160,7 @@ export default function EditItem() {
               value={area}
               required={true}
               options={areaData}
-              onChange={(e) => handleOptionChangeArea(e.target.value)}
+              onChange={handleOptionChangeArea}
             />
             <DropdownInput
               id="category"
@@ -170,7 +169,7 @@ export default function EditItem() {
               value={category}
               required={true}
               options={categoryData}
-              onChange={(e) => handleOptionChangeCategory(e.target.value)}
+              onChange={handleOptionChangeCategory}
             />
           </div>
           <div className="btnsNewArea">
