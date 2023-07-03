@@ -421,4 +421,21 @@ export const updateItem = async (
   }
 };
 
+export const useFetchAudits = () => {
+  const [audits, setAudits] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/audits");
+        setAudits(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return audits;
+};
 
