@@ -40,7 +40,7 @@ export const createUser = async (name, email, cpf, password) => {
     const response = await api.post("/admins", { name, email, cpf, password });
     return response.data;
   } catch (error) {
-    console.log(error.response.data); 
+    console.log(error.response.data);
     throw new Error("Erro ao criar usuário");
   }
 };
@@ -91,8 +91,12 @@ export const updateCategory = async (id_category, name, type, description) => {
   }
 };
 
+
+
+
+
 export const getCategory = async () => {
-  try{
+  try {
     const response = await api.get("/categories");
     return response.data;
   } catch (error) {
@@ -102,8 +106,20 @@ export const getCategory = async () => {
   }
 };
 
+// export const getArea = async () => {
+//   try{
+//     const response = await api.get(`/areas`);
+
+//     return response.data;
+//   } catch (error) {
+//     //Fazer um modal de erro
+//     console.log(error.response.data);
+//     throw new Error("Erro ao retornar dados área");
+//   }
+// };
+
 export const getCategoryById = async (id_category) => {
-  try{
+  try {
     const response = await api.get(`/categories/${id_category}`);
     return response.data;
   } catch (error) {
@@ -112,6 +128,16 @@ export const getCategoryById = async (id_category) => {
     throw new Error("Erro ao retornar categoria");
   }
 };
+
+// export const getAreaById = async (id_area) => {
+//   try {
+//     const response = await api.get(`/areas/${id_area}`);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//     throw new Error("Erro ao obter area");
+//   }
+// };
 
 export const deleteCategory = async (id_category) => {
   try {
@@ -190,7 +216,7 @@ export const updateArea = async (
 };
 
 export const getArea = async () => {
-  try{
+  try {
     const response = await api.get(`/areas`);
 
     return response.data;
@@ -316,7 +342,7 @@ export const useFetchItems = () => {
     const fetchData = async () => {
       try {
         const response = await api.get("/assets");
-        setItems(response.data.map( ({ area, category, ...rest }) => ({
+        setItems(response.data.map(({ area, category, ...rest }) => ({
           ...rest,
           name_area: area.name_area,
           name_category: category.name
@@ -342,7 +368,6 @@ export const deleteItem = async (account_code) => {
   }
 };
 
-//AQUI QUE NAO TA DANDO
 export const createItem = async (name_asset, account_code, amount, registration_date, category, area) => {
 
   console.log("Cheguei no createItem com os seguintes dados:", name_asset, account_code, amount, registration_date, category, area);
@@ -350,11 +375,49 @@ export const createItem = async (name_asset, account_code, amount, registration_
   try {
     console.log("Cheguei dentro do try de createItem");
     // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
-    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: {id_category: category}, area: {id_area: area}});
+    const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: { id_category: category }, area: { id_area: area } });
     return response.data;
   } catch (error) {
-    console.log(error.response.data); 
+    console.log(error.response.data);
     throw new Error("Erro ao criar item");
+  }
+};
+
+export const getItemById = async (id_item) => {
+  try {
+    const response = await api.get(`/assets/${id_item}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao obter funcionários");
+  }
+};
+
+export const updateItem = async (
+  id_asset,
+  name_asset,
+  account_code,
+  amount,
+  registration_date,
+  category_id,
+  area_id
+) => {
+  const category = { id_category: category_id };
+  const area = { id_area: area_id };
+  try {
+    const response = await api.put("/assets", {
+      id_asset,
+      name_asset,
+      account_code,
+      amount,
+      registration_date,
+      category,
+      area
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data);
+    throw new Error("Erro ao editar bem");
   }
 };
 
