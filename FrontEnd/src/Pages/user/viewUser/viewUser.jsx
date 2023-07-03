@@ -63,9 +63,9 @@ export default function ViewUser() {
 
                 </form>
 
-                <div className="logContainer">
+                {/* <div className="logContainer">
 
-                </div>
+                </div> */}
             </div>
         </div>
 

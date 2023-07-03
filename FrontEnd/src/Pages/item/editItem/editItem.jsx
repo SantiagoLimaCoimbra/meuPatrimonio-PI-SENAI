@@ -31,6 +31,8 @@ export default function EditItem() {
   const [category, setCategory] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
 
+  
+
   const navigate = useNavigate();
 
    
@@ -45,7 +47,7 @@ export default function EditItem() {
         setDate(asset.registration_date);
 
         setArea(asset.area.id_area);
-        setCategory(asset.area.id_category);
+        setCategory(asset.category.id_category);
       } catch (error) {
         console.log(error);
       }

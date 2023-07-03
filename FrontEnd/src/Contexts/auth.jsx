@@ -19,8 +19,8 @@ import {
     getArea,
     createItem,
     getAreaById
-  } from '../Services/api';
-  
+} from '../Services/api';
+
 
 export const AuthContext = createContext();
 
@@ -77,13 +77,13 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         navigate("/login");
     }
-    
+
     const signIn = async (name, email, cpf, password) => {
         try {
             await createUser(name, email, cpf, password);
             await createSession(cpf, password);
             navigate("/login");
-    
+
         } catch (error) {
             handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema! Tente entrar.");
             console.log(error);
@@ -120,7 +120,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const newArea = async (name_area, description_area, employee) => {
-        
+
         try {
             await createArea(name_area, description_area, employee);
             navigate("/viewAreas");
@@ -132,48 +132,48 @@ export const AuthProvider = ({ children }) => {
 
     const getEmployeeData = async () => {
         try {
-          const employees = await getEmployee();
-          const employeeData = employees.map(({ id_employee, name_employee }) => ({
-            id_employee,
-            name_employee,
-          }));
-          return employeeData;
+            const employees = await getEmployee();
+            const employeeData = employees.map(({ id_employee, name_employee }) => ({
+                id_employee,
+                name_employee,
+            }));
+            return employeeData;
         } catch (error) {
-          console.log(error);
-          throw new Error("Erro ao obter dados dos funcionários");
+            console.log(error);
+            throw new Error("Erro ao obter dados dos funcionários");
         }
-      };
+    };
 
-      const getAreaData = async () => {
+    const getAreaData = async () => {
         try {
-          const area = await getArea();
-          const areaData = area.map(({ id_area, name_area }) => ({
-            id_area,
-            name_area,
-          }));
-          return areaData;
+            const area = await getArea();
+            const areaData = area.map(({ id_area, name_area }) => ({
+                id_area,
+                name_area,
+            }));
+            return areaData;
         } catch (error) {
-          console.log(error);
-          throw new Error("Erro ao obter dados das áreas");
+            console.log(error);
+            throw new Error("Erro ao obter dados das áreas");
         }
-      };
+    };
 
-      const getCategoryData = async () => {
+    const getCategoryData = async () => {
         try {
-          const category = await getCategory();
-          const categoryData = category.map(({ id_category, name }) => ({
-            id_category,
-            name,
-          }));
-          return categoryData;
+            const category = await getCategory();
+            const categoryData = category.map(({ id_category, name }) => ({
+                id_category,
+                name,
+            }));
+            return categoryData;
         } catch (error) {
-          console.log(error);
-          throw new Error("Erro ao obter dados das categorias");
+            console.log(error);
+            throw new Error("Erro ao obter dados das categorias");
         }
-      };
+    };
 
-      const newItem = async (name_asset, account_code, amount, registration_date, category, area) => {
-        
+    const newItem = async (name_asset, account_code, amount, registration_date, category, area) => {
+
         console.log("Dados do newItem do auth.jsx:", name_asset, account_code, amount, registration_date, category, area);
 
         try {
@@ -185,7 +185,7 @@ export const AuthProvider = ({ children }) => {
             console.log(error);
         }
     }
-      
+
     const handleEditArea = async (name_area, description_area, employee) => {
         try {
             await updateCategory(name_area, description_area, employee);
@@ -194,7 +194,7 @@ export const AuthProvider = ({ children }) => {
             //Fazer um modal de erro aparecer aqui
             console.log(error);
         }
-    }      
+    }
 
     const handleDeleteArea = async (id_area) => {
         try {
@@ -231,27 +231,27 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-        value={{
-          user,
-          loading,
-          login,
-          logout,
-          signIn,
-          handleDelete,
-          newArea,
-          handleEditArea,
-          handleDeleteArea,
-          newCategory,
-          handleEditCategory,
-          newEmployee,
-          handleDeleteEmployee,
-          getEmployeeData,
-          getAreaData,
-          getCategoryData,
-          newItem,
-          
-        }}
-      >
+            value={{
+                user,
+                loading,
+                login,
+                logout,
+                signIn,
+                handleDelete,
+                newArea,
+                handleEditArea,
+                handleDeleteArea,
+                newCategory,
+                handleEditCategory,
+                newEmployee,
+                handleDeleteEmployee,
+                getEmployeeData,
+                getAreaData,
+                getCategoryData,
+                newItem,
+
+            }}
+        >
             {children}
             <ErroDialog
                 open={errorOpen} // Estado que controla a exibição do diálogo
