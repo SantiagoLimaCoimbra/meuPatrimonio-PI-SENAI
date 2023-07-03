@@ -80,6 +80,7 @@ export default function ViewAreas() {
             <Btn btnMessage={"Novo"} onClick={handleNewArea}/>
           </div>
         </div>
+        
         <Table
           data={areas}
           onPageChange={handlePageChange}

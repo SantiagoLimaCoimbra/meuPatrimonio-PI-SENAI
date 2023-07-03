@@ -26,8 +26,8 @@ export default function ViewItems() {
     
   };
 
-  const handleEditItem = (account_code) => {
-    navigate(`/editItem/${account_code}`);
+  const handleEditItem = (id_asset) => {
+    navigate(`/editItem/${id_asset}`);
   };
 
   useEffect(() => {
@@ -37,8 +37,8 @@ export default function ViewItems() {
   }, [isDeleted]);
 
 
-  const handleOpenDialog = (account_code) => {
-    setSelectedItemId(account_code);
+  const handleOpenDialog = (id_asset) => {
+    setSelectedItemId(id_asset);
     setOpenDialog(true);
   };
 
@@ -46,9 +46,9 @@ export default function ViewItems() {
     setOpenDialog(false);
   };
 
-  const handleDelete = async (account_code) => {
+  const handleDelete = async (id_asset) => {
     try {
-      await deleteItem(account_code);
+      await deleteItem(id_asset);
       handleCloseDialog();
       setIsDeleted(true);
     } catch (error) {

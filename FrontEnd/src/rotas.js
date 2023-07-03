@@ -63,7 +63,7 @@ export default function Rotas() {
 
                <Route element={ <Private> <ViewItems/> </Private> }  path="/" />
                <Route element={ <Private> <NewItem/> </Private> }  path="/newItem" />
-               <Route element={ <Private> <EditItem/> </Private> }  path="/editItem" />
+               <Route element={ <Private> <EditItem/> </Private> }  path="/editItem/:id_asset"/>
 
                <Route element={ <Private> <Dashboard/> </Private> }  path="/dashboard" />
 

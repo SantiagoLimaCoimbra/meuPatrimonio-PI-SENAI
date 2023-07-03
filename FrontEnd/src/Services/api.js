@@ -358,3 +358,41 @@ export const createItem = async (name_asset, account_code, amount, registration_
   }
 };
 
+export const getItemById = async (id_item) => {
+  try {
+    const response = await api.get(`/assets/${id_item}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao obter funcionários");
+  }
+};
+
+export const updateItem = async (
+  id_asset,
+  name_asset,
+  account_code,
+  amount,
+  registration_date,
+  category_id,
+  area_id
+) => {
+  const category = { id_category: category_id };
+  const area = { id_area: area_id};
+  try {
+    const response = await api.put("/assets", {
+      id_asset,
+      name_asset,
+      account_code,
+      amount,
+      registration_date,
+      category,
+      area
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data);
+    console.log(error)
+    throw new Error("Erro ao editar bem");
+  }
+};
