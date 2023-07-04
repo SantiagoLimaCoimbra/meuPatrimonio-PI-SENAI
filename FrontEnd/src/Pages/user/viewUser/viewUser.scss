@@ -1,96 +1,97 @@
 @import '../../../css/styles.scss';
 
 .viewUserPage {
-    align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
 
 
     .viewUser {
-        gap: 90px;
-        height: 83%;
+        width: fit-content;
+        height: fit-content;
         display: flex;
+        margin: auto;
         justify-content: center;
         align-items: center;
-        flex-direction: row;  
-    }
-
-
-    .viewUser h1 {
-        color: $dark-brown;
-        padding-bottom: 25px;
-    }
-
-    .title{
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-
-    label{
-        font-weight: bold;
-        padding-bottom: 5px;
-    }
-
-    .viewUserForm {
-        height: 89%;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    
+        padding: 45px;
         border-radius: 30px;
         background-color: #f9f4e33d;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        backdrop-filter: blur(13.5px);
-        -webkit-backdrop-filter: blur(13.5px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
         color: $dark-brown;
+        
+            h1 {
+                color: $dark-brown;
+                padding-bottom: 25px;
+            }
+        
+            .title{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+        
+            label{
+                font-weight: bold;
+                padding-bottom: 5px;
+            }
+            .icon{
+                background-color: $dark-green;
+                width: 65px;
+                height: 65px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 100%;
+            }
+        
+            .logContainer{        
+                height: 89%;
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            
+                border-radius: 30px;
+                background-color: #f9f4e33d;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+                backdrop-filter: blur(13.5px);
+                -webkit-backdrop-filter: blur(13.5px);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                color: $dark-brown;
+            }
+        
+            .inputsUser {
+                width: 500px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        
+        }
     }
 
-    .icon{
-        background-color: $dark-green;
-        width: 65px;
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 100%;
-    }
 
-    .logContainer{        
-        height: 89%;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    
-        border-radius: 30px;
-        background-color: #f9f4e33d;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        backdrop-filter: blur(13.5px);
-        -webkit-backdrop-filter: blur(13.5px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        color: $dark-brown;
-    }
-
-    .inputsUser {
-        width: 500px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-}
 
 @media screen and (max-width: 768px) {
 
+    .viewUserPage{
+        
+        .viewUser{
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0px;
+        }
+    }
 
 
 }
