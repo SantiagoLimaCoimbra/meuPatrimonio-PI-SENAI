@@ -39,8 +39,8 @@ export default function ViewAudit() {
       <div className="viewAudit">
         <div className="header">
           <div className="texts">
-            <h1>Historico</h1>
-            <label>Historico de ações no sistema</label>
+            <h1>Histórico</h1>
+            <label>Aqui você encontra o registro de alterações no patrimônio!</label>
           </div>
         </div>
         <Table
