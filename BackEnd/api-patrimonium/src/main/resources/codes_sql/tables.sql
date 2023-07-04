@@ -1,3 +1,4 @@
+
 create table Category (
     id_category int not null auto_increment,
     name varchar(45) not null,
@@ -11,7 +12,7 @@ create table Admin (
     id int not null auto_increment,
     name varchar(60) not null,
     email varchar(120) not null unique,
-    cpf varchar(11) not null,
+    cpf varchar(11) not null unique,
     password varchar(255) not null,
 
     primary key(id)
@@ -20,8 +21,8 @@ create table Admin (
 create table Employee (
 	id_employee int not null auto_increment,
     name_employee varchar (120) not null,
-    cpf varchar(11) not null,
-    email varchar(120) not null,
+    cpf varchar(11) not null unique,
+    email varchar(120) not null unique,
     position varchar(45) not null,
 
     primary key(id_employee)
