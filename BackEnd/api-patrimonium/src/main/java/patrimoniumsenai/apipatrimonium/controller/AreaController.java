@@ -24,7 +24,7 @@ public class AreaController {
 
     @GetMapping
     public List<ReadAreaDTO> read(){
-        return repository.findAll().stream().map(ReadAreaDTO::new).toList();
+        return repository.findAllOrderByDesc().stream().map(ReadAreaDTO::new).toList();
     }
 
     @GetMapping("/{id_area}")

@@ -24,7 +24,7 @@ public class EmployeeController {
 
     @GetMapping
     public List<ReadEmployeeDTO> read(){
-        return repository.findAll().stream().map(ReadEmployeeDTO::new).toList();
+        return repository.findAllOrderByDesc().stream().map(ReadEmployeeDTO::new).toList();
     }
 
     @GetMapping("/{id_employee}")

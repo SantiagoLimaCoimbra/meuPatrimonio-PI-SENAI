@@ -18,7 +18,7 @@ public class AuditController {
 
     @GetMapping
     public List<ReadAuditDTO> read(){
-        return repository.findAll().stream().map(ReadAuditDTO::new).toList();
+        return repository.findAllOrderByDesc().stream().map(ReadAuditDTO::new).toList();
     }
 
 }
