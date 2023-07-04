@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import patrimoniumsenai.apipatrimonium.admin.Admin;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -58,6 +58,6 @@ public class AuditListener {
 
         //object.toString() --> retornar o payload
 
-        return new AuditDTO(object.getClass().getSimpleName(), type, auditorName, LocalDateTime.now());
+        return new AuditDTO(object.getClass().getSimpleName(), type, auditorName, LocalDate.now());
     }
 }
