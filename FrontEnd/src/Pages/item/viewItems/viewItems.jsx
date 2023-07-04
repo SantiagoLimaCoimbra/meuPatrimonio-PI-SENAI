@@ -60,6 +60,7 @@ export default function ViewItems() {
     { key: "name_asset", label: "Nome do bem" },
     { key: "account_code", label: "Código contábil" },
     { key: "amount", label: "Quantidade" },
+    { key: "registration_date", label: "Ano"},
     { key: "name_category", label: "Categoria" },
     { key: "name_area", label: "Área" },
   ];

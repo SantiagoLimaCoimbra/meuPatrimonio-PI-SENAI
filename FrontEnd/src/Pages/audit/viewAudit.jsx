@@ -3,13 +3,11 @@ import './viewAudit.scss';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 import Menu from '../../Components/menuComponent/menu';
-import { useNavigate } from "react-router-dom";
 import { useFetchAudits } from "../../Services/api";
 import { Pagination } from '@mui/lab';
 
 export default function ViewAudit() {
   const audits = useFetchAudits();
-  const navigate = useNavigate();
   
   const [page, setPage] = useState(1);
   const rowsPerPage = 6;
@@ -21,12 +19,19 @@ export default function ViewAudit() {
 
 
   const cellTitles = [
-    { key: "entity", label: "Tabela" },
+    { key: "entity", label: "Página" },
     { key: "operation", label: "Operação realizada" },
-    { key: "modifiedBy", label: "Admin" },
+    { key: "modifiedBy", label: "Usuário" },
     { key: "modifiedAt", label: "Data de alteração" }
   ];
 
+  const entityLabels = {
+    Asset: "Bem",
+    Category: "Categoria",
+    Employee: "Funcionário",
+    Area: "Área"
+  };
+  
 
   return (
     <div className="viewAuditPage">
@@ -60,7 +65,8 @@ export default function ViewAudit() {
                 <TableRow key={row.id_audit}>
                 {cellTitles.map((cellTitle) => (
                     <TableCell key={cellTitle.key} className="table-cell">
-                    {row[cellTitle.key]}
+                      {cellTitle.key === "entity" ? entityLabels[row[cellTitle.key]] || row[cellTitle.key] : row[cellTitle.key]}
+                    {/* {row[cellTitle.key]} */}
                     </TableCell>
                 ))}
                 </TableRow>

@@ -138,7 +138,7 @@ export default function EditItem() {
               onChange={(e) => setAssetCode(e.target.value)}
             />
             <Input
-              id="name_asset"
+              id="amount"
               type="text"
               placeholder="Quantidade"
               value={amount}
@@ -148,6 +148,7 @@ export default function EditItem() {
             <Input
               id="registration_date"
               type="text"
+              mask={"0000"}
               placeholder="Ano de registro"
               value={registration_date}
               required={true}
