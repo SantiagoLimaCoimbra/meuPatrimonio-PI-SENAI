@@ -24,7 +24,7 @@ public class AssetController {
 
     @GetMapping
     public List<ReadAssetDTO> read(){
-        return repository.findAll().stream().map(ReadAssetDTO::new).toList();
+        return repository.findAllOrderByDesc().stream().map(ReadAssetDTO::new).toList();
     }
 
     @GetMapping("/{id_asset}")

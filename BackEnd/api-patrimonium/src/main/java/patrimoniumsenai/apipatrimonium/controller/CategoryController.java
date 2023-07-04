@@ -2,6 +2,7 @@ package patrimoniumsenai.apipatrimonium.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CategoryController {
 
     @GetMapping
     public List<ReadCategoryDTO> read(){
-        return repository.findAll().stream().map(ReadCategoryDTO::new).toList();
+        return repository.findAllOrderByDesc().stream().map(ReadCategoryDTO::new).toList();
     }
 
     @GetMapping("/{id_category}")
