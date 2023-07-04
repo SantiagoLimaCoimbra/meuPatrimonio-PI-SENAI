@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity(name = "Audit")
 @Table(name = "audit")//maiusuco?
@@ -35,7 +35,7 @@ public class Audit implements Serializable {
 
     @NotNull
     @Column(name = "modified_at", nullable = false)
-    private LocalDateTime modifiedAt;
+    private LocalDate modifiedAt;
 
     public Audit(AuditDTO data){
         this.entity = data.entity();

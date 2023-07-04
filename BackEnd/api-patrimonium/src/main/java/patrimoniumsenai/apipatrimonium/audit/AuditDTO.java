@@ -2,7 +2,7 @@ package patrimoniumsenai.apipatrimonium.audit;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record AuditDTO(
         @NotBlank
@@ -15,7 +15,7 @@ public record AuditDTO(
         String modifiedBy,
 
         @NotBlank
-        LocalDateTime modifiedAt
+        LocalDate modifiedAt
 
 ) {
 }
