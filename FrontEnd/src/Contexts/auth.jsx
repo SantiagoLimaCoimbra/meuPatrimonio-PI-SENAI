@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
             await createCategory(name, type, description);
             navigate("/viewCategories");
         } catch (error) {
-            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
+            handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
             console.log(error);
         }
     }
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
             await createArea(name_area, description_area, employee);
             navigate("/viewAreas");
         } catch (error) {
-            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
+            handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
             console.log(error);
         }
     }
@@ -211,7 +211,7 @@ export const AuthProvider = ({ children }) => {
             navigate("/viewEmployees");
         } catch (error) {
             console.log(error);
-            handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
+            handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
         }
     }
 

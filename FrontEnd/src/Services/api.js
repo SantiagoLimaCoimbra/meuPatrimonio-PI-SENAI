@@ -370,11 +370,8 @@ export const deleteItem = async (account_code) => {
 
 export const createItem = async (name_asset, account_code, amount, registration_date, category, area) => {
 
-  console.log("Cheguei no createItem com os seguintes dados:", name_asset, account_code, amount, registration_date, category, area);
 
   try {
-    console.log("Cheguei dentro do try de createItem");
-    // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
     const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: { id_category: category }, area: { id_area: area } });
     return response.data;
   } catch (error) {
