@@ -370,15 +370,11 @@ export const deleteItem = async (account_code) => {
 
 export const createItem = async (name_asset, account_code, amount, registration_date, category, area) => {
 
-  console.log("Cheguei no createItem com os seguintes dados:", name_asset, account_code, amount, registration_date, category, area);
-
   try {
-    console.log("Cheguei dentro do try de createItem");
-    // const response = await api.post("/areas", { name_asset, account_code, amount, registration_date, category, area});
     const response = await api.post("/assets", { name_asset, account_code, amount, registration_date, category: { id_category: category }, area: { id_area: area } });
     return response.data;
   } catch (error) {
-    console.log(error.response.data);
+    handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
     throw new Error("Erro ao criar item");
   }
 };
@@ -388,7 +384,7 @@ export const getItemById = async (id_item) => {
     const response = await api.get(`/assets/${id_item}`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error)
     throw new Error("Erro ao obter funcionários");
   }
 };
@@ -416,7 +412,7 @@ export const updateItem = async (
     });
     return response.data;
   } catch (error) {
-    console.log(error.response.data);
+    handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
     throw new Error("Erro ao editar bem");
   }
 };
