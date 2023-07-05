@@ -67,7 +67,7 @@ export default function EditEmployee() {
       navigate("/viewEmployees")
     } catch (error) {
       console.log(error);
-      handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
+      // Exibir um modal de erro ou tratar o erro de alguma outra forma
     }
   };
 
