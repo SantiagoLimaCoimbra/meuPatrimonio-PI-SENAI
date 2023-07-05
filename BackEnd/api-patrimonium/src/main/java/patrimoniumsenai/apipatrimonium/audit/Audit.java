@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity(name = "Audit")
-@Table(name = "audit")//maiusuco?
+@Table(name = "audit")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

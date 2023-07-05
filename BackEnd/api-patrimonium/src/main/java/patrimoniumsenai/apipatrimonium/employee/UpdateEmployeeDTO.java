@@ -9,7 +9,6 @@ public record UpdateEmployeeDTO(
         String name_employee,
         @Pattern(regexp = "\\d{11}")
         String cpf,
-
         @Email
         String email,
         Position position) {
