@@ -14,6 +14,7 @@ import { AuthContext } from "../../../Contexts/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function NewEmployee() {
+
   const { newEmployee } = useContext(AuthContext);
 
   const [name_employee, setEmployeeName] = useState("");
