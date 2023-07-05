@@ -7,13 +7,10 @@ import java.time.LocalDate;
 public record AuditDTO(
         @NotBlank
         String entity,
-
         @NotBlank
         String operation,
-
         @NotBlank
         String modifiedBy,
-
         @NotBlank
         LocalDate modifiedAt
 

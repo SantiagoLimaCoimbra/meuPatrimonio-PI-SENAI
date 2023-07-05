@@ -27,7 +27,6 @@ public class Admin implements UserDetails {
     private String email;
     private String cpf;
     private String password;
-
     //private Boolean ativo;
 
     public Admin(CreateAdminDTO data, PasswordEncoder encoder) {
