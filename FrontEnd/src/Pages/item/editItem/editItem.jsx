@@ -38,7 +38,6 @@ export default function EditItem() {
     const fetchItem = async () => {
       try {
         const asset = await getItemById(id_asset);
-        console.log(asset)
         setAssetName(asset.name_asset);
         setAssetCode(asset.account_code);
         setAmount(asset.amount);
@@ -59,7 +58,6 @@ export default function EditItem() {
       try {
         const data = await getAreaData();
         setAreaData(data.map((area) => ({ value: area.id_area, label: area.name_area })));
-        console.log("areaData:", areaData);
       } catch (error) {
         console.log(error); 
       }
@@ -75,7 +73,6 @@ export default function EditItem() {
       try {
         const data = await getCategoryData();
         setCategoryData(data.map((category) => ({ value: category.id_category, label: category.name })));
-        console.log("categoryData:", categoryData);
       } catch (error) {
         console.log(error);
       }

@@ -106,18 +106,6 @@ export const getCategory = async () => {
   }
 };
 
-// export const getArea = async () => {
-//   try{
-//     const response = await api.get(`/areas`);
-
-//     return response.data;
-//   } catch (error) {
-//     //Fazer um modal de erro
-//     console.log(error.response.data);
-//     throw new Error("Erro ao retornar dados área");
-//   }
-// };
-
 export const getCategoryById = async (id_category) => {
   try {
     const response = await api.get(`/categories/${id_category}`);
@@ -128,16 +116,6 @@ export const getCategoryById = async (id_category) => {
     throw new Error("Erro ao retornar categoria");
   }
 };
-
-// export const getAreaById = async (id_area) => {
-//   try {
-//     const response = await api.get(`/areas/${id_area}`);
-//     return response.data;
-//   } catch (error) {
-//     console.log(error);
-//     throw new Error("Erro ao obter area");
-//   }
-// };
 
 export const deleteCategory = async (id_category) => {
   try {
@@ -164,7 +142,6 @@ export const useFetchAreas = () => {
             name_employee: employee.name_employee,
           }))
         );
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -188,7 +165,6 @@ export const createArea = async (name_area, description_area, employee_id) => {
     return response.data;
   } catch (error) {
     //Fazer um modal de erro
-    console.log("employee:", employee);
     console.log(error.response.data);
     throw new Error("Erro ao criar area");
   }

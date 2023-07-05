@@ -174,11 +174,8 @@ export const AuthProvider = ({ children }) => {
 
     const newItem = async (name_asset, account_code, amount, registration_date, category, area) => {
 
-        console.log("Dados do newItem do auth.jsx:", name_asset, account_code, amount, registration_date, category, area);
-
         try {
             await createItem(name_asset, account_code, amount, registration_date, category, area);
-            console.log("cheguei")
             // navigate("/");
         } catch (error) {
             handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");

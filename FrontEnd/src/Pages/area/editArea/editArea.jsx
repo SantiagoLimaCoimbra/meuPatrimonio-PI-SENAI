@@ -32,7 +32,6 @@ export default function EditArea() {
     const fetchArea = async () => {
       try {
         const area = await getAreaById(id_area);
-        console.log(area)
         setNameArea(area.name_area);
         setDescription(area.description_area);
         
@@ -49,8 +48,7 @@ export default function EditArea() {
     const fetchData = async () => {
       try {
         const data = await getEmployeeData();
-        setEmployeeData(data.map((employee) => ({ value: employee.id_employee, label: employee.name_employee })));
-        console.log("emp", data); 
+        setEmployeeData(data.map((employee) => ({ value: employee.id_employee, label: employee.name_employee }))); 
       } catch (error) {
         console.log(error);
       }

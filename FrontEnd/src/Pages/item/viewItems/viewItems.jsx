@@ -19,7 +19,6 @@ export default function ViewItems() {
   const navigate = useNavigate();
   
   const items = useFetchItems();
-  console.log(items);
 
 
   const handlePageChange = (value) => {
