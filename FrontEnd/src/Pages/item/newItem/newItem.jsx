@@ -14,6 +14,7 @@ import { AuthContext } from "../../../Contexts/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function NewItem() {
+
   const { newItem, getAreaData, getCategoryData } = useContext(AuthContext);
   const [name_asset, setAssetName] = useState("");
   const [account_code, setAssetCode] = useState("");

@@ -7,12 +7,20 @@ import './viewEmployees.scss';
 import Btn from "../../../Components/brownBtnComponent/btn";
 import Menu from '../../../Components/menuComponent/menu';
 import Table from "../../../Components/tableComponent/table";
-import { deleteEmployee, useFetchEmployees  } from "../../../Services/api";
+
 import Dialog from "../../../Components/dialogComponent/dialog";
+import ErroDialog from '../../../Components/erroDialogComponent/erroDialog';
+
 import { useNavigate } from "react-router-dom";
+import { deleteEmployee, useFetchEmployees } from "../../../Services/api";
 
 export default function ViewCategories() {
+
   const [openDialog, setOpenDialog] = useState(false);
+
+  const [errorOpen, setErrorOpen] = useState(false); // Novo estado para controlar o diálogo de erro
+  const [errorDialogMsg, setErrorDialogMsg] = useState("");
+
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false); // Estado que indica se a exclusão ocorreu
   const employees = useFetchEmployees();
@@ -20,7 +28,7 @@ export default function ViewCategories() {
 
 
   const handlePageChange = (value) => {
-    
+
   };
 
   const handleEdit = (id_employee) => {
@@ -43,13 +51,20 @@ export default function ViewCategories() {
     setOpenDialog(false);
   };
 
+  const handleErrorOpen = (errorMessage) => {
+    setErrorOpen(true);
+    setErrorDialogMsg(errorMessage);
+  };
+
   const handleDeleteEmployee = async (id_employee) => {
     try {
       await deleteEmployee(id_employee);
       handleCloseDialog();
       setIsDeleted(true);
     } catch (error) {
-      console.log(error);
+      handleCloseDialog();
+      setIsDeleted(false);
+      handleErrorOpen("Não é possível excluír uma colaborador que possua uma área associada.");
     }
   };
 
@@ -57,7 +72,7 @@ export default function ViewCategories() {
     { key: "name_employee", label: "Nome" },
     { key: "cpf", label: "CPF" },
     { key: "email", label: "Email" },
-    { key: "position", label: "Cargo"}
+    { key: "position", label: "Cargo" }
   ];
 
   const handleNewEmployee = () => {
@@ -75,7 +90,7 @@ export default function ViewCategories() {
             <label>Todos os funcionários cadastrados se encontram aqui!</label>
           </div>
           <div className="btn-new">
-            <Btn btnMessage={"Novo"} onClick={handleNewEmployee}/>
+            <Btn btnMessage={"Novo"} onClick={handleNewEmployee} />
           </div>
         </div>
         <Table
@@ -86,6 +101,7 @@ export default function ViewCategories() {
           idPropertyName="id_employee"
           cellTitles={cellTitles}
         />
+
         {openDialog && (
           <Dialog
             open={openDialog}
@@ -96,6 +112,16 @@ export default function ViewCategories() {
             idPropertyName={selectedItemId}
           />
         )}
+
+        {errorOpen && (
+          <ErroDialog
+            open={errorOpen} // Estado que controla a exibição do diálogo
+            handleClose={() => setErrorOpen(false)} // Função para fechar o diálogo
+            dialogTitle="Ops!" // Título do diálogo
+            dialogMsg={errorDialogMsg} // Mensagem de erro
+          />
+        )}
+
       </div>
     </div>
   );
