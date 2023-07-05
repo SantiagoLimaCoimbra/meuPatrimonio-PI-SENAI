@@ -91,10 +91,6 @@ export const updateCategory = async (id_category, name, type, description) => {
   }
 };
 
-
-
-
-
 export const getCategory = async () => {
   try {
     const response = await api.get("/categories");

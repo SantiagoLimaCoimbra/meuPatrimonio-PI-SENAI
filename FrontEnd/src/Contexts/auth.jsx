@@ -1,6 +1,8 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ErroDialog from '../Components/erroDialogComponent/erroDialog';
+import ConfirmDialog from '../Components/confirmDialogComponent/confirmDialog';
+
 
 import {
     api,
@@ -28,8 +30,12 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
     const [errorOpen, setErrorOpen] = useState(false); // Novo estado para controlar o diálogo de erro
     const [errorDialogMsg, setErrorDialogMsg] = useState("");
+
+    const [confirmOpen, setConfirmOpen] = useState(false); // Novo estado para controlar o diálogo de erro
+    const [confirmDialogMsg, setConfirmDialogMsg] = useState("");
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
@@ -82,6 +88,9 @@ export const AuthProvider = ({ children }) => {
         try {
             await createUser(name, email, cpf, password);
             await createSession(cpf, password);
+
+            handleConfirmOpen("Cadastro de usuário realizado!");
+
             navigate("/login");
 
         } catch (error) {
@@ -93,6 +102,8 @@ export const AuthProvider = ({ children }) => {
     const newCategory = async (name, type, description) => {
         try {
             await createCategory(name, type, description);
+            handleConfirmOpen("Cadastro de categoria realizado!");
+
             navigate("/viewCategories");
         } catch (error) {
             handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
@@ -123,6 +134,8 @@ export const AuthProvider = ({ children }) => {
 
         try {
             await createArea(name_area, description_area, employee);
+            handleConfirmOpen("Cadastro de área realizado!");
+
             navigate("/viewAreas");
         } catch (error) {
             handleErrorOpen("Verifique se os campos foram preenchidos corretamente. Caso estejam corretos, verifique se algum dos dados inseridos já existe no sistema!");
@@ -176,6 +189,8 @@ export const AuthProvider = ({ children }) => {
 
         try {
             await createItem(name_asset, account_code, amount, registration_date, category, area);
+            handleConfirmOpen("Cadastro de bem realizado!");
+
             // navigate("/");
         } catch (error) {
             handleErrorOpen("Verifique se os dados inseridos já não existem no sistema!");
@@ -205,6 +220,8 @@ export const AuthProvider = ({ children }) => {
     const newEmployee = async (name_employee, cpf, email, position) => {
         try {
             await createEmployee(name_employee, cpf, email, position);
+            handleConfirmOpen("Cadastro de funcionário realizado!");
+
             navigate("/viewEmployees");
         } catch (error) {
             console.log(error);
@@ -224,6 +241,11 @@ export const AuthProvider = ({ children }) => {
     const handleErrorOpen = (errorMessage) => {
         setErrorOpen(true);
         setErrorDialogMsg(errorMessage);
+    };
+
+    const handleConfirmOpen = (confirmMsg) => {
+        setConfirmOpen(true);
+        setConfirmDialogMsg(confirmMsg);
     };
 
     return (
@@ -256,6 +278,14 @@ export const AuthProvider = ({ children }) => {
                 dialogTitle="Ops!" // Título do diálogo
                 dialogMsg={errorDialogMsg} // Mensagem de erro
             />
+
+            <ConfirmDialog
+                open={confirmOpen} // Estado que controla a exibição do diálogo
+                handleClose={() => setConfirmOpen(false)} // Função para fechar o diálogo
+                dialogTitle="Sucesso!" // Título do diálogo
+                dialogMsg={confirmDialogMsg} // Mensagem de erro
+            />
+
         </AuthContext.Provider>
     )
 
