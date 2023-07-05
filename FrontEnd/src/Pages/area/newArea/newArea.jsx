@@ -21,15 +21,11 @@ export default function NewArea() {
   const [employeeData, setEmployeeData] = useState([]);
   const navigate = useNavigate();
 
-  console.log(employee);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getEmployeeData();
         setEmployeeData(data.map((employee) => ({ value: employee.id_employee, label: employee.name_employee })));
-        console.log(employeeData); 
-        console.log(getEmployeeData());
       } catch (error) {
         console.log(error);
       }
