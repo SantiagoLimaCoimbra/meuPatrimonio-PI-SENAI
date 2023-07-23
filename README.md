@@ -1,4 +1,4 @@
-# Meu Patrimonio
+# Patrimonium
 
 Software desenvolvido para o projeto integrador da faculdade.
 
